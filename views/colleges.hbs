@@ -1,26 +1,30 @@
 <div class="row">
-    <div class="col-xs-5">
+    <div class="col-xs-10">
         <div class="box">
             <div class="box-header">
                 <h3 class="box-title">Cities</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-                <a href="/admin/add-city"> <button class="btn btn-primary">Add City</button></a>
+                <a href="/admin/add-college"> <button class="btn btn-primary">Add College</button></a>
                 <table id="example2" class="table table-bordered table-hover">
                     <thead>
                     <tr>
-                        <th>City ID</th>
-                        <th>City Name</th>
+                        <th>College ID</th>
+                        <th>College Name</th>
+                        <th>Address</th>
+                        <th>City</th>
                     </tr>
                     </thead>
                     <tbody>
-                    {{#if Cities}}
-                        {{#each Cities}}
+                    {{#if Colleges}}
+                        {{#each Colleges}}
                             <tr>
-                                <td>{{this.city_id}}</td>
-                                <td>{{this.city_name}}
+                                <td>{{this.college_id}}</td>
+                                <td>{{this.college_name}}
                                 </td>
+                                <td>{{this.college_address}}</td>
+                                <td>{{this.city_name}}</td>
 
                             </tr>
                         {{/each}}
