@@ -10,23 +10,23 @@ db.connect(function(err) {
     if (err) throw err
     console.log('Mysql connected...')
 })
-
+var db_connection=1;
 db.query('create database if not exists Trip_Pool', function(err, result) {
     if (err) throw err
     //console.log("database created");
 })
-db.query('use Trip_Pool',function (err,result) {
+db.query('use Trip_Pool',function (err, result) {
     if (err) throw err
 });
 var query='create table if not exists Cities(city_id int primary key,city_name varchar(255))';
-db.query(query,function (err,result) {
+db.query(query,function (err, result) {
     if (err) throw err
     //console.log(result)
 
 })
 
 query='create table if not exists Colleges(college_id int primary key,college_name varchar(255),college_address varchar(255),town varchar(255))'
-db.query(query,function (err,result) {
+db.query(query,function (err, result) {
     if (err) throw err
     //console.log(result)
 
@@ -42,8 +42,12 @@ query='create table if not exists Users(user_id int primary key,' +
     'user_type varchar(255),' +
     'gender varchar(255),' +
     'password varchar(255)) ';
-db.query(query,function (err,result) {
+db.query(query,function (err, result) {
     if (err) throw err
     //console.log(result)
 
 })
+
+//module.exports = db;
+//module.exports=db_connection;
+exports.db=db;

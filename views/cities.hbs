@@ -1,0 +1,37 @@
+<div class="row">
+    <div class="col-xs-5">
+        <div class="box">
+            <div class="box-header">
+                <h3 class="box-title">Cities</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+                <table id="example2" class="table table-bordered table-hover">
+                    <thead>
+                    <tr>
+                        <th>City ID</th>
+                        <th>City Name</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {{#if Cities}}
+                        {{#each Cities}}
+                            <tr>
+                                <td>{{this.id}}</td>
+                                <td>{{this.city_name}}
+                                </td>
+
+                            </tr>
+                        {{/each}}
+                    {{/if}}
+
+
+                    </tbody>
+
+                </table>
+            </div>
+            <!-- /.box-body -->
+        </div>
+        <!-- /.box -->
+    </div>
+</div>

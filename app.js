@@ -9,7 +9,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
 var app = express();
-require('./config/db');
+var db =require('./config/db');
 // view engine setup
 app.engine('hbs',hbs({extname:'hbs',defaultLayout:'layout',layoutsDir:__dirname + '/views/layouts/',partialsDir:__dirname + '/views/partials/'}));
 app.set('views', path.join(__dirname, 'views'));
@@ -20,9 +20,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
+//app.use(db);
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/admin', usersRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
