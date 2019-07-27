@@ -69,4 +69,12 @@ router.post('/doAddCollege',function (req,res,next) {
         })
     }
 })
+router.get("/users",function (req,res,next) {
+    var query="select u.first_name,u.last_name,u.email,u.mobile,u.user_type,u.gender,c.college_name,c.college_address,t.city_name " +
+        "from Users u,Colleges c,Cities t where u.city=t.city_id && u.college=c.college_id";
+    conn.query(query,function (err,result) {
+        console.log(result);
+        res.render("users",{"Users":result})
+    })
+})
 module.exports = router;
