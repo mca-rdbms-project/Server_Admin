@@ -4,7 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var hbs=require('express-handlebars');
-
+var bodyParser=require("body-parser");
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
@@ -14,7 +14,10 @@ var db =require('./config/db');
 app.engine('hbs',hbs({extname:'hbs',defaultLayout:'layout',layoutsDir:__dirname + '/views/layouts/',partialsDir:__dirname + '/views/partials/'}));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
+app.use(logger('dev'));
 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
