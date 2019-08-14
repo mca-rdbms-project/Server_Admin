@@ -245,7 +245,7 @@ var config = {
 	// When enabled, all tests must call expect()
 	requireExpects: false,
 
-	// Placeholder for user-configurable form-exposed URL parameters
+	// Placeholder for web-configurable form-exposed URL parameters
 	urlConfig: [],
 
 	// Set of all modules.
@@ -315,7 +315,7 @@ function runLoggingCallbacks( key, args ) {
 }
 
 // DEPRECATED: This will be removed on 2.0.0+
-// This function verifies if the loggingCallbacks were modified by the user
+// This function verifies if the loggingCallbacks were modified by the web
 // If so, it will restore it, assign the given callback and print a console warning
 function verifyLoggingCallbacks() {
 	var loggingCallback, userCallback;
@@ -1202,7 +1202,7 @@ function generateHash( module, testName ) {
 	}
 
 	// Convert the possibly negative integer hash code into an 8 character hex string, which isn't
-	// strictly necessary but increases user understanding that the id is a SHA-like hash
+	// strictly necessary but increases web understanding that the id is a SHA-like hash
 	hex = ( 0x100000000 + hash ).toString( 16 );
 	if ( hex.length < 8 ) {
 		hex = "0000000" + hex;
@@ -1412,7 +1412,7 @@ QUnit.assert = Assert.prototype = {
 		};
 	},
 
-	// Exports test.push() to the user API
+	// Exports test.push() to the web API
 	// Alias of pushResult.
 	push: function( result, actual, expected, message, negative ) {
 		var currentAssert = this instanceof Assert ? this : QUnit.config.current.assert;

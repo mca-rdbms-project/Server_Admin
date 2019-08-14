@@ -7,7 +7,7 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
-router.post('/user-registration', function(req, res, next) {
+router.post('/web-registration', function(req, res, next) {
   console.log("API called");
     if(req.body){
       //console.log(req.body);
@@ -55,9 +55,13 @@ router.post('/user-login',function (req,res,next) {
 })
 router.get('/cities',function (req,res,next) {
     var cities="select * from Cities";
-    conn.query(cities,function (err, result) {
+    conn.query(cities,function (err, data,fields) {
         if (err) throw err
-        res.json(result)
+
+        data=Object.values(JSON.parse(JSON.stringify(data)))
+        data.status=true;
+        console.log(data);
+        res.json(data)
 
     })
 })

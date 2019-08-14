@@ -7,6 +7,7 @@ var hbs=require('express-handlebars');
 var bodyParser=require("body-parser");
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var webRouter=require('./routes/web')
 
 var app = express();
 var db =require('./config/db');
@@ -26,6 +27,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 //app.use(db);
 app.use('/', indexRouter);
 app.use('/admin', usersRouter);
+app.use('/web',webRouter)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

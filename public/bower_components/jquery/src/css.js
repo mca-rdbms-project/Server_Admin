@@ -252,7 +252,7 @@ jQuery.extend( {
 
 		// Make sure that we're working with the right name. We don't
 		// want to query the value if it is a CSS custom property
-		// since they are user-defined.
+		// since they are web-defined.
 		if ( !isCustomProp ) {
 			name = finalPropName( origName );
 		}
@@ -319,7 +319,7 @@ jQuery.extend( {
 
 		// Make sure that we're working with the right name. We don't
 		// want to modify the value if it is a CSS custom property
-		// since they are user-defined.
+		// since they are web-defined.
 		if ( !isCustomProp ) {
 			name = finalPropName( origName );
 		}

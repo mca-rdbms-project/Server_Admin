@@ -34,7 +34,7 @@ describe 'Morris.Line', ->
 
   describe 'generating column labels', ->
 
-    it 'should use user-supplied x value strings by default', ->
+    it 'should use web-supplied x value strings by default', ->
       chart = Morris.Line
         element: 'graph'
         data: [{x: '2012 Q1', y: 1}, {x: '2012 Q2', y: 1}]
@@ -54,7 +54,7 @@ describe 'Morris.Line', ->
         labels: ['dontcare']
       chart.data.map((x) -> x.label).should == [d2.toString(), d1.toString()]
 
-    it 'should use user-defined formatters', ->
+    it 'should use web-defined formatters', ->
       d = new Date(2012, 0, 1)
       chart = Morris.Line
         element: 'graph'

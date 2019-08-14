@@ -1938,7 +1938,7 @@ if ('win32' == process.platform) {
 /**
  * Color `str` with the given `type`,
  * allowing colors to be disabled,
- * as well as user-defined color
+ * as well as web-defined color
  * schemes.
  *
  * @param {String} type
