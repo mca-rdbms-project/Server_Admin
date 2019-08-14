@@ -55,19 +55,23 @@ router.post('/user-login',function (req,res,next) {
 })
 router.get('/cities',function (req,res,next) {
     var cities="select * from Cities";
-    conn.query(cities,function (err, data,fields) {
+    conn.query(cities,function (err, data) {
         if (err) throw err
 
         data=Object.values(JSON.parse(JSON.stringify(data)))
-        data.status=true;
-        console.log(data);
-        res.json(data)
+        //data.status=true;
+        //console.log(data);
+        var cities={};
+        cities.list=data;
+        cities.status=true;
+        console.log(cities);
+        res.json(cities)
 
     })
 })
 router.get('/colleges',function (req,res,next) {
     var cities="select * from Colleges";
-    conn.query(cities,function (err, result) {
+    conn.query(cities,function (err, data) {
         if (err) throw err
         res.json(result)
 
