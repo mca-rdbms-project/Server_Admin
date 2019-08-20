@@ -8,7 +8,7 @@ var bodyParser=require("body-parser");
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var webRouter=require('./routes/web')
-
+var session = require('express-session');
 var app = express();
 var db =require('./config/db');
 // view engine setup
@@ -16,7 +16,13 @@ app.engine('hbs',hbs({extname:'hbs',defaultLayout:'layout',layoutsDir:__dirname 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 app.use(logger('dev'));
+app.use(session(
+    {
+        secret: 'mysupersecret',
+        resave: false,
+        saveUninitialized: false,
 
+    }));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(logger('dev'));

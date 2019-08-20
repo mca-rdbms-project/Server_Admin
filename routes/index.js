@@ -7,7 +7,7 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
-router.post('/web-registration', function(req, res, next) {
+router.post('/user-registration', function(req, res, next) {
   console.log("API called");
     if(req.body){
       //console.log(req.body);

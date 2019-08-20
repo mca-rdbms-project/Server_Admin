@@ -1,0 +1,22 @@
+.g-signin2{
+    position: absolute;
+    margin-top: 60px;
+}
+@media (min-width: 768px){
+
+
+    .aside-sm {
+        width: 250px;
+    }
+}
+@media (min-width: 768px){
+    #nav .nav-avatar .thumb-sm {
+        width: 60px;
+    }
+}
+#floating-panel{
+    margin-top: 35%;
+    width: 50%;
+    height: auto;
+    border-radius: 10px;
+}
