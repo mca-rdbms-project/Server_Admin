@@ -10,9 +10,16 @@ const db=require('../config/db');
 const conn=db.db;
 
 
-router.get('/',function (req,res,next) {
-    res.render("web/home",{layout:false});
+router.get('/login',function (req,res,next) {
+    res.render("web/login",{layout:false});
 })
+router.get('/map',function (req,res,next) {
+    res.render("web/map",{layout:false});
+})
+router.get('/offer-trip',function (req,res,next) {
+    res.render("web/offer-trip",{layout:"user-layout"});
+})
+
 
 
 
