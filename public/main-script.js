@@ -21,3 +21,8 @@ function onSignIn(googleUser) {
     })
 
 }
+$(document).ready(function () {
+
+        $("#destination-input").css("margin-top","50px")
+    })
+

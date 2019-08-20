@@ -20,3 +20,39 @@
     height: auto;
     border-radius: 10px;
 }
+#mode-selector{
+    display: none;
+}
+.offer-trip-form{
+    margin-top: 100px;
+    position: absolute;
+
+}
+.gm-control-active.gm-fullscreen-control{
+    display: none !important;
+}
+.gm-style-cc{
+    display: none;
+}
+.gmnoprint.gm-bundled-control.gm-bundled-control-on-bottom{
+    display: none;
+}
+input.controls{
+    width: 30%;
+    border-radius: 30px;
+    font-weight: 600;
+    background: #060F0B;
+    color: #fff;
+    height: 40px;
+    margin-top: 27%;
+    margin-left: 10%;
+}
+.trip-details{
+    width: 60%;
+    margin: auto;
+    border: solid;
+    border-radius: 10px;
+    height: 290px;
+    margin-top: 30px;
+    padding: 20px;
+}
