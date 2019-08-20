@@ -11,7 +11,7 @@ const conn=db.db;
 
 
 router.get('/',function (req,res,next) {
-    res.render("web/index",{layout:false});
+    res.render("web/home",{layout:false});
 })
 
 

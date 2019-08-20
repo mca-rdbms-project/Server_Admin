@@ -69,6 +69,26 @@ router.get('/cities',function (req,res,next) {
 
     })
 })
+router.post('/collegesByCity',function (req,res,next) {
+    if(req.body){
+        var data=new Object(req.body);
+        data=JSON.stringify(data)
+        data=JSON.parse(data)
+
+
+
+        var query="select * from Colleges where town='"+data.city_id+"'";
+        conn.query(query,function (err,result) {
+            console.log(result)
+            if(result.length>0){
+                res.json({"status":true});
+            }
+            else {
+                res.json({"status":false});
+            }
+        })
+    }
+})
 router.get('/colleges',function (req,res,next) {
     var cities="select * from Colleges";
     conn.query(cities,function (err, data) {
