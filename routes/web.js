@@ -81,7 +81,10 @@ router.post("/do-offer-trip",function (req,res,next) {
         var data=req.body;
         var time=data.hour+":"+data.min;
         var date=new Date(data.date);
-        query="INSERT INTO Trips(trip_id,date,time,vehicle,seats,v_details,rules,origin,destination,status,user) VALUES (null, 2019/05/12, `"+time+"`, `"+data.vehicle+"`, `"+data.seats+"`, `"+data.v_details+"`, `"+data.rules+"`, `"+data.origin+"`, `"+data.destination+"`, `upcoming`,'"+data.user+"');"
+
+        query="INSERT INTO Trips VALUES (null,'"+data.date+"','"+time+"','"+data.vehicle+"',"+data.seats+",'"+data.v_details+"','"+data.rules+"','"+data.origin+"','"+data.destination+"','upcoming',   "+data.user+");"
+       // query="INSERT INTO Trips (trip_id,date,time,vehicle,seats,v_details,rules,origin,destination,status,user) (trip_id,date) VALUES (null,'"+data.date+"');"
+       /* (trip_id,date,time,vehicle,seats,v_details,rules,origin,destination,status,user)*/
         conn.query(query,function (err,result) {
             if(err){
                 console.log(err)
