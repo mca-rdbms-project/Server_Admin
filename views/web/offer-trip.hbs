@@ -1,10 +1,6 @@
-<base href="https://demos.telerik.com/kendo-ui/datetimepicker/index">
-<link rel="stylesheet" href="https://kendo.cdn.telerik.com/2019.2.619/styles/kendo.common-material.min.css" />
-<link rel="stylesheet" href="https://kendo.cdn.telerik.com/2019.2.619/styles/kendo.material.min.css" />
-<link rel="stylesheet" href="https://kendo.cdn.telerik.com/2019.2.619/styles/kendo.material.mobile.min.css" />
 
-<script src="https://kendo.cdn.telerik.com/2019.2.619/js/jquery.min.js"></script>
-<script src="https://kendo.cdn.telerik.com/2019.2.619/js/kendo.all.min.js"></script>
+
+
     <style>
         /* Always set the map height explicitly to define the size of the div
          * element that contains the map. */
@@ -82,27 +78,39 @@
 
 </div>
 
-<script>
 
-</script>
 <div id="map"></div>
 <div class="trip-details">
 
-    <p>Date</p>
-    <div class="demo-section k-content">
 
-        <input id="datetimepicker" title="datetimepicker" style="width: 100%;" />
+    <div class="form-group">
+        <div class="col-sm-6">
+            <p>Date</p>
+            <input  class="input-sm input-s datepicker-input form-control" size="16"
+                type="text" value="2019-08-25" data-date-format="yyyy-mm-dd" id="date"></div>
+        <div class="col-sm-3">
+            <p>Hour</p>
+            <select id="hour" class="form-control mb ">
+
+            </select>
+
+        </div>
+        <div class="col-sm-3">
+            <p>Min</p>
+            <select id="min" class="form-control mb ">
+
+            </select>
+
+        </div>
     </div>
 
-    <script>
-        $(document).ready(function () {
-            // create DateTimePicker from input HTML element
-            $("#datetimepicker").kendoDateTimePicker({
-                value: new Date(),
-                dateInput: true
-            });
-        });
-    </script>
+    <!--<div class="form-group"><label class="col-sm-2 control-label">Combodate</label>
+        <div class="col-sm-10"><input type="text" class="combodate form-control"
+                                      data-format="DD-MM-YYYY HH:mm"
+                                      data-template="D MMM YYYY - HH : mm"
+                                      name="datetime" value="21-12-2012 20:30"></div>
+    </div>-->
+
     <div class="col-md-5" mb>
         <p>Vehicle</p>
     <select id="vehicle" class="form-control mb ">
@@ -122,8 +130,11 @@
     <div class="col-md-12">
         <br>
         <p>Vehicle Details</p>
-    <input id="vehicle-details" placeholder="Vehicle Details" class="form-control"><br>
-        <button class="btn btn-success form-control" type="submit">Submit</button>
+    <input id="vehicle_details" placeholder="Vehicle Details" class="form-control"><br>
+        <p>Other Rules</p>
+        <input id="rules" placeholder="Rules" class="form-control"><br>
+        <input id="user" value="{{user.user_id}}" placeholder="Rules" class="hidden">
+        <button class="btn btn-success form-control" type="submit" id="offer_trip_sub_btn">Submit</button>
     </div>
 
 </div>
@@ -238,6 +249,10 @@
                 });
     };
 
+
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBSjMmeNnPp00VQhtalS1czrRCYf2ATYLg&libraries=places&callback=initMap"
         async defer></script>
+<script>
+
+</script>

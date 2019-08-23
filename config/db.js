@@ -47,7 +47,25 @@ db.query(query,function (err, result) {
     //console.log(result)
 
 })
+query='CREATE TABLE if not exists Trips (' +
+    '  `trip_id` INT NOT NULL AUTO_INCREMENT,' +
+    '  `date` DATE NULL,' +
+    '  `time` VARCHAR(45) NULL,' +
+    '  `Tripcol` VARCHAR(45) NULL,' +
+    '  `vehicle` VARCHAR(45) BINARY NULL,' +
+    '  `seats` INT NULL,' +
+    '  `v_details` VARCHAR(255) NULL,' +
+    '  `rules` VARCHAR(255) NULL,' +
+    '  `origin` VARCHAR(45) NULL,' +
+    '  `destination` VARCHAR(45) NULL,' +
+    '  `status` VARCHAR(45) NULL,' +
+    '  PRIMARY KEY (`trip_id`));';
 
+db.query(query,function (err, result) {
+    if (err) throw err
+    //console.log(result)
+
+})
 //module.exports = db;
 //module.exports=db_connection;
 exports.db=db;
