@@ -88,13 +88,15 @@ router.post("/do-offer-trip",function (req,res,next) {
         conn.query(query,function (err,result) {
             if(err){
                 console.log(err)
+                throw err
             }
             console.log(result);
+            res.json({"status":true});
 
         })
 
 
-        res.json(req.body);
+
     }
 })
 
