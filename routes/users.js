@@ -77,4 +77,22 @@ router.get("/users",function (req,res,next) {
         res.render("users",{"Users":result})
     })
 })
+router.get("/view-trips",function (req,res) {
+    var query="select * from Trips";
+    conn.query(query,function (err,trips) {
+        trips=Object.values(JSON.parse(JSON.stringify(trips)))
+        console.log(trips)
+        res.render("view-trips",{"Trips":trips})
+    })
+})
+router.get("/delete-college/:id",function (req,res) {
+    var id=req.params.id;
+    console.log(id)
+    var query="delete from Colleges where college_id='"+id+"'";
+    conn.query(query,function (err,done) {
+        if (err) throw err
+        console.log(done)
+        res.redirect("/admin/colleges");
+    })
+})
 module.exports = router;

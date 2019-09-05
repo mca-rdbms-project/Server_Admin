@@ -40,10 +40,10 @@ router.get('/map',function (req,res,next) {
     res.render("web/map",{layout:false});
 })
 router.get('/offer-trip',function (req,res,next) {
-    if(req.session.loggedIn!=true) {
+    /*if(req.session.loggedIn!=true) {
         res.redirect('/panel/login')
-    }
-    else {
+    }*/
+    {
         console.log(req.session.user);
         res.render("web/offer-trip", {layout: 'l2', 'user': req.session.user});
     }

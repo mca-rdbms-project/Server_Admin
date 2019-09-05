@@ -2,6 +2,9 @@ var express = require('express');
 var router = express.Router();
 const db=require('../config/db');
 const conn=db.db;
+var distance = require('google-distance');
+distance.apiKey="AIzaSyBSjMmeNnPp00VQhtalS1czrRCYf2ATYLg"
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
@@ -17,7 +20,7 @@ router.post('/user-registration', function(req, res, next) {
         data=JSON.parse(data)
         console.log(data)
 
-        var insert="insert into Users values(null,'"+data.f_name+"','"+data.l_name+"','"+data.email+"','"+data.mno+"','"+data.city+"','"+data.id_photo+"','"+data.user_type+"','"+data.gender+"','"+data.password+"')";
+        var insert="insert into Users values(null,'"+data.f_name+"','"+data.l_name+"','"+data.email+"','"+data.mno+"','"+data.city+"','"+data.college+"','"+data.user_type+"','"+data.gender+"','"+data.password+"',null)";
         conn.query(insert, function(err, results) {
             if (err) throw err
             console.log(results)
@@ -89,9 +92,6 @@ router.post('/collegesByCity',function (req,res,next) {
         var data=new Object(req.body);
         data=JSON.stringify(data)
         data=JSON.parse(data)
-
-
-
         var query="select * from Colleges where town='"+data.city_id+"'";
         conn.query(query,function (err,result) {
             console.log(result)
@@ -126,42 +126,151 @@ router.post("/do-offer-trip",function (req,res,next) {
         data=JSON.stringify(data)
         data=JSON.parse(data)
 
-        var time=data.hour+":"+data.min;
+        /*var time=data.hour+":"+data.min;*/
         var date=new Date(data.date);
-
-
-        query="INSERT INTO Trips VALUES (null,'"+data.date+"','"+time+"','"+data.vehicle+"',"+data.seats+",'"+data.v_details+"','"+data.rules+"','"+data.origin+"','"+data.destination+"','upcoming',   "+data.user+");"
+        console.log(data);
+        var v_details=data.v_model+" "+data.v_color+" "+data.v_no;
+        var rule=data.rule1;
+        var query="INSERT INTO Trips VALUES (null,'"+data.date+"','"+data.time+"','"+data.vehicle+"',"+data.seats+",'"+v_details+"','"+rule+"','"+data.origin+"','"+data.destination+"','upcoming',   "+data.user+");"
 
         conn.query(query,function (err,result) {
             if(err){
                 console.log(err)
                 throw err
             }
-            console.log(result);
-            res.json({"status":true});
+            else {
+                console.log(result);
+                res.json({"status": true});
+            }
 
         })
 
 
     }
 })
+var gtrips={};
 router.post("/find-trip",function (req,res) {
+    if(req.body){
+        var data=new Object(req.body);
+        data=JSON.stringify(data)
+        data=JSON.parse(data)
+
+        var query="select t.trip_id,t.time,t.v_details,t.rules,u.first_name,u.mobile,t.origin from Trips t,Users u where t.user=u.user_id";
+        var obj={}
+        var tripArr=[];
+        conn.query(query,function (err,trips) {
+            if(err){
+                console.log(err)
+                throw err
+            }
+            else {
+                trips=Object.values(JSON.parse(JSON.stringify(trips)))
+
+
+                if (trips.length > 0) {
+                    trips.forEach(function (item) {
+
+                        if (findDistance(item.origin, data.f_location) < 10 && data.date == trips.date && findDistance(item.destination, data.to_location)) {
+
+                            item.distance = findDistance(item.origin, data.f_location)
+                            tripArr.push(item);
+                        }
+
+                    })
+                    gtrips.data=null;
+                    gtrips.data = trips;
+                    //console.log(obj);
+                    gtrips.status=true;
+
+                    res.json({"status": true});
+                }
+                else {
+                    res.json({"status": true, "Result": "Empty"});
+                }
+            }
+        })
+
+    }
     console.log(req.body);
-    var data={"data":[{
+   /* var data={"data":[{
         "name":"sonu",
             "city":"Bangalore"
 
     }],"status":true}
-    res.json(data);
+    res.json(data);*/
 })
+router.post("/request-trip",function (req,res) {
+    if(req.body) {
+        var data = new Object(req.body);
+        data = JSON.stringify(data)
+        data = JSON.parse(data)
+
+        console.log(data);
+        //var query="select trip_id from Trips where user='"+data.user_id+"' && status='upcoming' ";
+        var query="select trip_id from Trips where status='upcoming' ";
+        conn.query(query,function (err,id) {
+            console.log(id)
+            query="insert into Requests values(null,'"+id[0].trip_id+"',"+data.user_id+")";
+
+            conn.query(query,function (err,result) {
+                if(err){
+                    res.json({"status":true})
+                }
+
+            })
+
+        })
+
+
+    }
+
+})
+router.post("/ride-request",function (req,res) {
+    if(req.body) {
+        var data = new Object(req.body);
+        data = JSON.stringify(data)
+        data = JSON.parse(data)
+
+        console.log(data);
+
+        res.json({"status":true})
+
+    }
+
+})
+
+
+function findDistance(loc1,loc2){
+    console.log(loc1)
+    console.log(loc2)
+    distance.get(
+        {
+            origin: loc1,
+            destination:loc2
+        },
+        function(err, data) {
+            if (err) return console.log(err);
+            //console.log(data);
+           // console.log(data.distance);
+            var dist=data.distance.slice(2,-1)
+            //console.log(dist)
+            console.log(dist)
+            dist=parseInt(dist);
+
+            console.log(dist)
+            return dist;
+        });
+}
 router.get("/list-view-rider",function (req,res) {
 
-    var data={"data":[{
+    /*var data={"data":[{
             "name":"sonu",
             "city":"Bangalore"
 
-        }],"status":true}
-    res.json(data);
+        }],"status":true}*/
+    console.log(gtrips)
+    res.json(gtrips);
+
 })
 
 module.exports = router;

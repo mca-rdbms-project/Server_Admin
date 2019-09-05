@@ -65,6 +65,15 @@ db.query(query,function (err, result) {
     //console.log(result)
 
 })
+query='CREATE TABLE if not exists `Trip_Pool`.`Requests` (\n' +
+    '  `req_id` int NOT NULL,\n' +
+    '  `trip_id` VARCHAR(45) NULL,\n' +
+    '  `user_id` VARCHAR(45) NULL,\n' +
+    '  PRIMARY KEY (`req_id`));'
+db.query(query,function (err, result) {
+    if (err) throw err
+    //console.log(result)
+})
 //module.exports = db;
 //module.exports=db_connection;
 exports.db=db;
