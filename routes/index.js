@@ -132,10 +132,11 @@ router.post("/do-offer-trip",function (req,res,next) {
         var v_details=data.v_model+" "+data.v_color+" "+data.v_no;
         var rule=data.rule1;
         var user=data.user;
+        console.log("user:"+user)
         user=user.substring(2);
-        user=user.substring(0,str.length-1);
+        user=user.substring(0,user.length-1);
 
-
+        console.log("user:"+user)
         var query="INSERT INTO Trips VALUES (null,'"+data.date+"','"+data.time+"','"+data.vehicle+"',"+data.seats+",'"+v_details+"','"+rule+"','"+data.origin+"','"+data.destination+"','upcoming','"+user+"');"
 
         conn.query(query,function (err,result) {
@@ -216,8 +217,13 @@ router.post("/request-trip",function (req,res) {
             query="insert into Requests values(null,'"+id[0].trip_id+"',"+data.user_id+")";
 
             conn.query(query,function (err,result) {
-                if(err){
+                if(!err){
                     res.json({"status":true})
+                }
+                else
+                {
+                    console.log(err);
+                    res.json({"status":false})
                 }
 
             })

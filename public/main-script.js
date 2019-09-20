@@ -61,6 +61,20 @@ $(document).ready(function () {
             }
         })
     })
+    $(document).ready(function () {
+        $("#add_city_form").validate();
+        alert("hello")
+        $("#add_city_form").validate({
+            rules:{
+                CityName:"required"
+            },
+            submitHandler: function(form) {
+                // do other things for a valid form
+                form.submit();
+            }
+
+        })
+    })
 
 
 
