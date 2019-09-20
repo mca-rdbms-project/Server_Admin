@@ -131,7 +131,12 @@ router.post("/do-offer-trip",function (req,res,next) {
         console.log(data);
         var v_details=data.v_model+" "+data.v_color+" "+data.v_no;
         var rule=data.rule1;
-        var query="INSERT INTO Trips VALUES (null,'"+data.date+"','"+data.time+"','"+data.vehicle+"',"+data.seats+",'"+v_details+"','"+rule+"','"+data.origin+"','"+data.destination+"','upcoming',   "+data.user+");"
+        var user=data.user;
+        user=user.substring(2);
+        user=user.substring(0,str.length-1);
+
+
+        var query="INSERT INTO Trips VALUES (null,'"+data.date+"','"+data.time+"','"+data.vehicle+"',"+data.seats+",'"+v_details+"','"+rule+"','"+data.origin+"','"+data.destination+"','upcoming','"+user+"');"
 
         conn.query(query,function (err,result) {
             if(err){
@@ -144,8 +149,6 @@ router.post("/do-offer-trip",function (req,res,next) {
             }
 
         })
-
-
     }
 })
 var gtrips={};
