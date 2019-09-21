@@ -212,11 +212,15 @@ router.post("/request-trip",function (req,res) {
         data = JSON.parse(data)
         var trip=data.trip_id;
         trip=data.substring(8)
-        trip_id=trip.substring(0,trip.length-1);
-        var user_id=data.user_id;
+        //trip_id=trip.substring(0,trip.length-1);
+        var user=data.user_id;
+        user=user.substring(2);
+        user=user.substring(0,user.length-1);
+
+
 
         //var query="select trip_id from Trips where user='"+data.user_id+"' && status='upcoming' ";
-        var query="insert into Requests values(null,'"+trip+"','"+user_id+"')";
+        var query="insert into Requests values(null,'"+trip+"','"+user+"')";
         conn.query(query,function (err,id) {
 
 
