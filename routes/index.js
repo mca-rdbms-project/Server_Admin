@@ -205,16 +205,20 @@ router.post("/find-trip",function (req,res) {
 })
 router.post("/request-trip",function (req,res) {
     if(req.body) {
+
         var data = new Object(req.body);
         data = JSON.stringify(data)
-        data = JSON.parse(data)
-
         console.log(data);
+        data = JSON.parse(data)
+        var trip=data.trip_id;
+        trip=data.substring(8)
+        trip_id=trip.substring(0,trip.length-1);
+        var user_id=data.user_id;
+
         //var query="select trip_id from Trips where user='"+data.user_id+"' && status='upcoming' ";
-        var query="select trip_id from Trips where status='upcoming' ";
+        var query="insert into Requests values(null,'"+trip+"','"+user_id+"')";
         conn.query(query,function (err,id) {
-            console.log(id)
-            query="insert into Requests values(null,'"+id[0].trip_id+"',"+data.user_id+")";
+
 
             conn.query(query,function (err,result) {
                 if(!err){
