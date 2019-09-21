@@ -208,8 +208,9 @@ router.post("/request-trip",function (req,res) {
 
         var data = new Object(req.body);
         data = JSON.stringify(data)
-        console.log(data);
+
         data = JSON.parse(data)
+        console.log(data);
         var trip=data.trip_id;
         trip=data.substring(8)
         //trip_id=trip.substring(0,trip.length-1);
