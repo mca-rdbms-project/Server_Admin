@@ -211,17 +211,17 @@ router.post("/request-trip",function (req,res) {
 
         data = JSON.parse(data)
         console.log(data);
-        var trip=data.trip_id;
-        trip=data.substring(8)
-        //trip_id=trip.substring(0,trip.length-1);
+        var trip_id=data.trip_id;
         var user=data.user_id;
+        trip_id=trip_id.substring(8);
+
         user=user.substring(2);
         user=user.substring(0,user.length-1);
 
 
 
         //var query="select trip_id from Trips where user='"+data.user_id+"' && status='upcoming' ";
-        var query="insert into Requests values(null,'"+trip+"','"+user+"')";
+        var query="insert into Requests values(null,'"+trip_id+"','"+user+"')";
         conn.query(query,function (err,id) {
 
 
