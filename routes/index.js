@@ -244,11 +244,12 @@ router.post("/request-trip",function (req,res) {
 
 })
 var driver;
-router.post("/find-requests",function (err,data) {
+router.post("/find-requests",function (req,res,next) {
     if(req.body) {
         var data = new Object(req.body);
         data = JSON.stringify(data)
         data = JSON.parse(data)
+        console.log(data);
         driver=data.user_id;
         console.log(data);
 
