@@ -273,7 +273,7 @@ router.get("/view-requests",function (req,res) {
         }
         else{
             console.log(err);
-            res.json(obj);
+            res.json({status:false});
 
         }
     })
