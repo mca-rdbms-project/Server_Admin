@@ -261,7 +261,7 @@ router.post("/find-requests",function (req,res,next) {
 })
 router.get("/view-requests",function (req,res) {
 
-    var query="select u.first_name,u.mobile,u.college from Users u,Trips t,Requests r where t.user='"+driver+"' && r.trip_d=t.trip_id && u.user_id=r.user_id"
+    var query="select u.first_name,u.mobile,u.college from Users u,Trips t,Requests r where t.user='"+driver+"' && r.trip_id=t.trip_id && u.user_id=r.user_id"
     conn.query(query,function (err,data) {
         if(!err){
             console.log(data);
