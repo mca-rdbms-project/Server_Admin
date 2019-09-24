@@ -243,6 +243,19 @@ router.post("/request-trip",function (req,res) {
     }
 
 })
+var driver;
+router.post("/find-requests",function (err,data) {
+    if(req.body) {
+        var data = new Object(req.body);
+        data = JSON.stringify(data)
+        data = JSON.parse(data)
+        driver=data.user_id;
+        console.log(data);
+
+        res.json({"status":true})
+
+    }
+})
 router.get("/view-requests",function (req,res) {
     var driver="2";
     var query="select u.first_name,u.mobile,u.college from Users u,Trips t,Requests r where t.user='"+driver+"' && r.trip_d=t.trip_id && u.user_id=r.user_id"
