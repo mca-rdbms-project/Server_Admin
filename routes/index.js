@@ -253,7 +253,7 @@ router.post("/find-requests",function (req,res,next) {
         driver=data.user_id;
         console.log(driver);
         driver=driver.substring(2);
-        driver=driver.substring(0,user.length-1);
+        driver=driver.substring(0,driver.length-1);
 
         res.json({"status":true})
 
