@@ -314,7 +314,7 @@ function findDistance(loc1,loc2){
         function(err, data) {
             if (err) return console.log(err);
 
-            return distance.distanceValue;
+            return data.distanceValue;
         });
 }
 
