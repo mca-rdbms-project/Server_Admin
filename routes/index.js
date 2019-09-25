@@ -173,8 +173,11 @@ router.post("/find-trip",function (req,res) {
 
                 if (trips.length > 0) {
                     trips.forEach(function (item) {
-
-                        if (findDistance(item.origin, data.f_location) <= 10000 && data.date == item.date && findDistance(item.destination, data.to_location)<=10000) {
+                        var oDist=findDistance(item.origin, data.f_location)
+                        var dDist=findDistance(item.destination, data.to_location)
+                        console.log("oDist :"+oDist);
+                        console.log("dDist :"+dDist);
+                        if ( oDist<= 10000 && data.date == item.date && dDist<=10000) {
 
                             item.distance = findDistance(item.origin, data.f_location)
                             tripArr.push(item);
