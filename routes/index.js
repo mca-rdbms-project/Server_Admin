@@ -186,7 +186,7 @@ router.post("/find-trip",function (req,res) {
                     //console.log(obj);
                     gtrips.status=true;
 
-                    res.json(gtrips);
+                    res.json({"status":true});
                 }
                 else {
                     res.json({"status": true, "Result": "Empty"});
@@ -291,8 +291,14 @@ router.post("/ride-request",function (req,res) {
     }
 
 })
+router.get("/list-view-rider",function (req,res) {
+    console.log(gtrips);
+    res.json(gtrips);
+
+})
 
 
+//-------------------------------------------------------------------------
 function findDistance(loc1,loc2){
     console.log(loc1)
     console.log(loc2)
@@ -307,16 +313,6 @@ function findDistance(loc1,loc2){
             return distance.distanceValue;
         });
 }
-router.get("/list-view-rider",function (req,res) {
 
-    /*var data={"data":[{
-            "name":"sonu",
-            "city":"Bangalore"
-
-        }],"status":true}*/
-    console.log(gtrips)
-    res.json(gtrips);
-
-})
 
 module.exports = router;
