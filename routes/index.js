@@ -308,10 +308,8 @@ function findDistance(loc1,loc2){
             console.log(data);
             var dist=data.distance.slice(2,-1)
             //console.log(dist)
-            console.log(dist)
             dist=parseInt(dist);
 
-            console.log(dist)
             return dist;
         });
 }
