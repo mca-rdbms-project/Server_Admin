@@ -159,7 +159,7 @@ router.post("/find-trip",function (req,res) {
         data=JSON.stringify(data)
         data=JSON.parse(data)
         console.log("find-trip values :"+data);
-        var query="select t.trip_id,t.time,t.v_details,t.rules,u.first_name,u.mobile,t.origin from Trips t,Users u where t.user=u.user_id && t.seats<='"+data.seats+"'";
+        var query="select t.trip_id,t.time,t.v_details,t.rules,u.first_name,u.mobile,t.origin from Trips t,Users u where t.user=u.user_id";
         var obj={}
         var tripArr=[];
         conn.query(query,function (err,trips) {
@@ -173,20 +173,30 @@ router.post("/find-trip",function (req,res) {
 
                 if (trips.length > 0) {
                     trips.forEach(function (item) {
+                        var originDist=findDistance(item.origin,data.f_location);
+                        originDist.then(oDist=>{
+                            var destDist=findDistance(item.destination, data.to_location);
+                            destDist.then(dDist=>{
+                                if (oDist <= 10 && data.date == trips.date && dDist<=10) {
 
-                        if (findDistance(item.origin, data.f_location) < 10 && data.date == trips.date && findDistance(item.destination, data.to_location)) {
+                                    item.distance = findDistance(item.origin, data.f_location)
+                                    tripArr.push(item);
+                                }
 
-                            item.distance = findDistance(item.origin, data.f_location)
-                            tripArr.push(item);
-                        }
+                            })
+                        })
 
+
+                    }).then(()=>{
+                        gtrips.data=null;
+                        gtrips.data = trips;
+                        //console.log(obj);
+                        gtrips.status=true;
+
+
+                        res.json({"status": true});
                     })
-                    gtrips.data=null;
-                    gtrips.data = trips;
-                    //console.log(obj);
-                    gtrips.status=true;
 
-                    res.json({"status": true});
                 }
                 else {
                     res.json({"status": true, "Result": "Empty"});
