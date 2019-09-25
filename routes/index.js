@@ -174,7 +174,7 @@ router.post("/find-trip",function (req,res) {
                 if (trips.length > 0) {
                     trips.forEach(function (item) {
 
-                        if (findDistance(item.origin, data.f_location) < 10 && data.date == item.date && findDistance(item.destination, data.to_location)) {
+                        if (findDistance(item.origin, data.f_location) <= 10000 && data.date == item.date && findDistance(item.destination, data.to_location)<=10000) {
 
                             item.distance = findDistance(item.origin, data.f_location)
                             tripArr.push(item);
@@ -303,14 +303,8 @@ function findDistance(loc1,loc2){
         },
         function(err, data) {
             if (err) return console.log(err);
-            //console.log(data);
-           // console.log(data.distance);
-            console.log(data);
-            var dist=data.distance.slice(2,-1)
-            //console.log(dist)
-            dist=parseInt(dist);
 
-            return dist;
+            return distance.distanceValue;
         });
 }
 router.get("/list-view-rider",function (req,res) {
