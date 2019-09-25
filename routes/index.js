@@ -159,7 +159,7 @@ router.post("/find-trip",function (req,res) {
         data=JSON.stringify(data)
         data=JSON.parse(data)
         console.log("find-trip values :"+data);
-        var query="select t.trip_id,t.time,t.v_details,t.rules,u.first_name,u.mobile,t.origin from Trips t,Users u where t.user=u.user_id && t.seats<=data.seats";
+        var query="select t.trip_id,t.time,t.v_details,t.rules,u.first_name,u.mobile,t.origin from Trips t,Users u where t.user=u.user_id && t.seats<='"+data.seats+"'";
         var obj={}
         var tripArr=[];
         conn.query(query,function (err,trips) {
