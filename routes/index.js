@@ -174,15 +174,25 @@ router.post("/find-trip",function (req,res) {
                 if (trips.length > 0) {
                     trips.forEach(function (item) {
 
-                        var oDist=findDistance(item.origin, data.f_location)
+                        /*var oDist=findDistance(item.origin, data.f_location)
                         var dDist=findDistance(item.destination, data.to_location)
                         console.log("oDist :"+oDist);
-                        console.log("dDist :"+dDist);
-                        if ( oDist<= 10000 && data.date == item.date && dDist<=10000) {
+                        console.log("dDist :"+dDist);*/
+                        var oDist;
+                        var dDist;
+                        findDistance(item.origin, data.f_location).then(function (data) {
+                            oDist=data;
+                            findDistance(item.destination, data.to_location).then(function (data){
+                                dDist=data
+                                if ( oDist<= 10000 && data.date == item.date && dDist<=10000) {
 
-                            item.distance = findDistance(item.origin, data.f_location)
-                            tripArr.push(item);
-                        }
+                                    item.distance = findDistance(item.origin, data.f_location)
+                                    tripArr.push(item);
+                                }
+                            })
+
+                        })
+
 
                     })
                     gtrips.data=null;
