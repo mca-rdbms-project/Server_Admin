@@ -329,7 +329,8 @@ function findDistance(loc1,loc2){
             if (err) return console.log(err);
             console.log(data.distanceValue);
            // return data.distanceValue;
-            Promise.resolve(data.distanceValue)
+            //Promise.resolve(data.distanceValue)
+            return data.distanceValue;
         });
 }
 
