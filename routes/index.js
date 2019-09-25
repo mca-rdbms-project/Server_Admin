@@ -180,7 +180,8 @@ router.post("/find-trip",function (req,res) {
                         console.log("dDist :"+dDist);*/
                         var oDist;
                         var dDist;
-                        findDistance(item.origin, data.f_location).then(function (data) {
+                        let distCal=findDistance(item.origin, data.f_location);
+                        distCal.then(function (data) {
                             oDist=data;
                             findDistance(item.destination, data.to_location).then(function (data){
                                 dDist=data
