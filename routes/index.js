@@ -173,7 +173,7 @@ router.post("/find-trip",function (req,res) {
 
                 if (trips.length > 0) {
                     trips.forEach(function (item) {
-                        console.log(item);
+
                         var oDist=findDistance(item.origin, data.f_location)
                         var dDist=findDistance(item.destination, data.to_location)
                         console.log("oDist :"+oDist);
