@@ -173,6 +173,9 @@ router.post("/find-trip",function (req,res) {
 
                 if (trips.length > 0) {
                     trips.forEach(function (item) {
+                        Promise.all([findDistance(item.origin, data.f_locatio), findDistance(item.destination, data.to_location)]).then((arr)=>{
+                            console.log(arr);
+                        })
 
                         /*var oDist=findDistance(item.origin, data.f_location)
                         var dDist=findDistance(item.destination, data.to_location)
@@ -180,7 +183,7 @@ router.post("/find-trip",function (req,res) {
                         console.log("dDist :"+dDist);*/
                         var oDist;
                         var dDist;
-                        let distCal=findDistance(item.origin, data.f_location);
+                        /*let distCal=findDistance(item.origin, data.f_location);
                         distCal.then(function (data) {
                             oDist=data;
                             findDistance(item.destination, data.to_location).then(function (data){
@@ -192,12 +195,12 @@ router.post("/find-trip",function (req,res) {
                                 }
                             })
 
-                        })
+                        })*/
 
 
                     })
                     gtrips.data=null;
-                    gtrips.data = trips;
+                    //gtrips.data = trips;
                     //console.log(obj);
                     gtrips.status=true;
 
@@ -325,7 +328,8 @@ function findDistance(loc1,loc2){
         function(err, data) {
             if (err) return console.log(err);
             console.log(data.distanceValue);
-            return data.distanceValue;
+           // return data.distanceValue;
+            Promise.resolve(data.distanceValue)
         });
 }
 
