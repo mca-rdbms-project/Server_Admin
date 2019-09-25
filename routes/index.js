@@ -186,7 +186,7 @@ router.post("/find-trip",function (req,res) {
                     //console.log(obj);
                     gtrips.status=true;
 
-                    res.json({"status": true});
+                    res.json(gtrips);
                 }
                 else {
                     res.json({"status": true, "Result": "Empty"});
@@ -261,7 +261,7 @@ router.post("/find-requests",function (req,res,next) {
 })
 router.get("/view-requests",function (req,res) {
 
-    var query="select u.first_name,u.mobile,u.college from Users u,Trips t,Requests r where t.user='"+driver+"' && r.trip_id=t.trip_id && u.user_id=r.user_id"
+    var query="select u.first_name,u.mobile,u.college from Users u,Trips t,Requests r where t.user='"+driver+"' && r.trip_id=t.trip_id && u.user_id=r.user_id";
     conn.query(query,function (err,data) {
         if(!err){
             console.log(data);
@@ -305,6 +305,7 @@ function findDistance(loc1,loc2){
             if (err) return console.log(err);
             //console.log(data);
            // console.log(data.distance);
+            console.log(data);
             var dist=data.distance.slice(2,-1)
             //console.log(dist)
             console.log(dist)
