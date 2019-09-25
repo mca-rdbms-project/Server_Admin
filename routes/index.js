@@ -173,7 +173,7 @@ router.post("/find-trip",function (req,res) {
 
                 if (trips.length > 0) {
                     trips.forEach(function (item) {
-                        Promise.all([findDistance(item.origin, data.f_locatio), findDistance(item.destination, data.to_location)]).then((arr)=>{
+                        Promise.all([findDistance(item.origin, data.f_location), findDistance(item.destination, data.to_location)]).then((arr)=>{
                             console.log(arr);
                         })
 
