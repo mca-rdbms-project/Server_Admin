@@ -175,37 +175,36 @@ router.post("/find-trip",function (req,res) {
                    // trips.forEach(function (item)
                     for(var i=0;i<trips.length;i++)
                     {
+                        fetchTrips();
+                        async function fetchTrips() {
+                            Promise.all([findDistance(item.origin, data.f_location), findDistance(item.destination, data.to_location)]).then((arr) => {
+                                console.log(arr);
+                            });
+                        }
 
-                        /* Promise.all([findDistance(item.origin, data.f_location), findDistance(item.destination, data.to_location)]).then((arr)=>{
-                            console.log(arr);
-                        });*/
-                        await (function(){
+                     /* async function fetchTrips() {
 
 
-                        Promise.all([findDistance(trips[i].origin, data.f_location), findDistance(trips[i].destination, data.to_location)]).then((arr)=>{
-                            console.log(arr);
-                        });
-                        })
+                          var oDist = findDistance(item.origin, data.f_location)
+                          var dDist = findDistance(item.destination, data.to_location)
+                          console.log("oDist :" + oDist);
+                          console.log("dDist :" + dDist);
+                          var oDist;
+                          var dDist;
+                          let distCal = await findDistance(item.origin, data.f_location);
+                          distCal.then(function (data) {
+                              oDist = data;
+                              findDistance(item.destination, data.to_location).then(function (data) {
+                                  dDist = data
+                                  if (oDist <= 10000 && data.date == item.date && dDist <= 10000) {
 
-                        /*var oDist=findDistance(item.origin, data.f_location)
-                        var dDist=findDistance(item.destination, data.to_location)
-                        console.log("oDist :"+oDist);
-                        console.log("dDist :"+dDist);*/
-                        var oDist;
-                        var dDist;
-                        /*let distCal=findDistance(item.origin, data.f_location);
-                        distCal.then(function (data) {
-                            oDist=data;
-                            findDistance(item.destination, data.to_location).then(function (data){
-                                dDist=data
-                                if ( oDist<= 10000 && data.date == item.date && dDist<=10000) {
+                                      item.distance = findDistance(item.origin, data.f_location)
+                                      tripArr.push(item);
+                                  }
+                              })
 
-                                    item.distance = findDistance(item.origin, data.f_location)
-                                    tripArr.push(item);
-                                }
-                            })
-
-                        })*/
+                          })
+                      }*/
 
 
                     }
@@ -342,6 +341,7 @@ async function findDistance(loc1,loc2){
             //Promise.resolve(data.distanceValue)
             return data.distance;
         });
+
 }
 
 
