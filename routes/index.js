@@ -177,7 +177,7 @@ router.post("/find-trip",function (req,res) {
                     {
                         fetchTrips();
                         async function fetchTrips() {
-                            Promise.all([findDistance(item.origin, data.f_location), findDistance(item.destination, data.to_location)]).then((arr) => {
+                            await Promise.all([findDistance(item.origin, data.f_location), findDistance(item.destination, data.to_location)]).then((arr) => {
                                 console.log(arr);
                             });
                         }
