@@ -172,9 +172,19 @@ router.post("/find-trip",function (req,res) {
 
 
                 if (trips.length > 0) {
-                    trips.forEach(function (item) {
-                        Promise.all([findDistance(item.origin, data.f_location), findDistance(item.destination, data.to_location)]).then((arr)=>{
+                   // trips.forEach(function (item)
+                    for(var i=0;i<trips.length;i++)
+                    {
+
+                        /* Promise.all([findDistance(item.origin, data.f_location), findDistance(item.destination, data.to_location)]).then((arr)=>{
                             console.log(arr);
+                        });*/
+                        await (function(){
+
+
+                        Promise.all([findDistance(trips[i].origin, data.f_location), findDistance(trips[i].destination, data.to_location)]).then((arr)=>{
+                            console.log(arr);
+                        });
                         })
 
                         /*var oDist=findDistance(item.origin, data.f_location)
@@ -198,7 +208,7 @@ router.post("/find-trip",function (req,res) {
                         })*/
 
 
-                    })
+                    }
                     gtrips.data=null;
                     //gtrips.data = trips;
                     //console.log(obj);
@@ -317,7 +327,7 @@ router.get("/list-view-rider",function (req,res) {
 
 
 //-------------------------------------------------------------------------
-function findDistance(loc1,loc2){
+async function findDistance(loc1,loc2){
     console.log(loc1)
     console.log(loc2)
     distance.get(
@@ -330,7 +340,7 @@ function findDistance(loc1,loc2){
             console.log(data.distanceValue);
            // return data.distanceValue;
             //Promise.resolve(data.distanceValue)
-            return data.distanceValue;
+            return data.distance;
         });
 }
 
