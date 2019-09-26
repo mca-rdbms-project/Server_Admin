@@ -182,6 +182,7 @@ router.post("/find-trip",function (req,res) {
                                 return arr;
                             });
                         }
+                        console.log(dists);
 
                      /* async function fetchTrips() {
 
