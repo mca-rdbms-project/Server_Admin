@@ -338,9 +338,8 @@ async function findDistance(loc1,loc2){
         function(err, data) {
             if (err) return console.log(err);
             console.log(data.distanceValue);
-           // return data.distanceValue;
-            //Promise.resolve(data.distanceValue)
-            return data.distance;
+
+            return data.distanceValue;
         });
 
 }
