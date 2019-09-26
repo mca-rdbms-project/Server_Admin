@@ -327,7 +327,7 @@ router.get("/list-view-rider",function (req,res) {
 })
 
 
-function findDistance(loc1,loc2){
+async function findDistance(loc1,loc2){
     console.log(loc1)
     console.log(loc2)
     distance.get(
