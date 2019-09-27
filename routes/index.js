@@ -250,23 +250,34 @@ router.post("/request-trip",function (req,res) {
 
 
         //var query="select trip_id from Trips where user='"+data.user_id+"' && status='upcoming' ";
-        var query="insert into Requests values(null,'"+trip_id+"','"+user+"',null)";
-        conn.query(query,function (err,id) {
+        var check="select * from from Requests where trip_id='"+trip_id+"' && user_id='"+user+"'";
+
+        conn.query(check,function (err,data) {
+            if(data.length==0){
+                var query="insert into Requests values(null,'"+trip_id+"','"+user+"',null)";
+                conn.query(query,function (err,id) {
 
 
-            conn.query(query,function (err,result) {
-                if(!err){
-                    res.json({"status":true})
-                }
-                else
-                {
-                    console.log(err);
-                    res.json({"status":false});
-                }
+                    conn.query(query,function (err,result) {
+                        if(!err){
+                            res.json({"status":true})
+                        }
+                        else
+                        {
+                            console.log(err);
+                            res.json({"status":false});
+                        }
 
-            })
+                    })
 
+                })
+            }
+            else
+            {
+                res.json({"status":false});
+            }
         })
+
 
 
     }
