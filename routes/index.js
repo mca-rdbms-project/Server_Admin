@@ -242,7 +242,7 @@ router.post("/request-trip",function (req,res) {
         console.log(data);
         var trip_id=data.trip_id;
         var user=data.user_id;
-        trip_id=trip_id.substring(8);
+        trip_id=trip_id.substring(9);
 
         user=user.substring(2);
         user=user.substring(0,user.length-1);
