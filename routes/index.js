@@ -211,7 +211,7 @@ router.post("/find-trip",function (req,res) {
 
                     }
                     gtrips.data=null;
-                    //gtrips.data = trips;
+                    gtrips.data = trips;
                     //console.log(obj);
                     gtrips.status=true;
 
