@@ -250,7 +250,7 @@ router.post("/request-trip",function (req,res) {
 
 
         //var query="select trip_id from Trips where user='"+data.user_id+"' && status='upcoming' ";
-        var check="select * from from Requests where trip_id='"+trip_id+"' && user_id='"+user+"'";
+        var check="select * from Requests where trip_id='"+trip_id+"' && user_id='"+user+"'";
 
         conn.query(check,function (err,data) {
             if(!err) {
