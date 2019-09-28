@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<!--[if IE 7]>                  <html class="ie7 no-js" lang="en">     <![endif]-->
+<!--[if lte IE 8]>              <html class="ie8 no-js" lang="en">     <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--> <html class="not-ie no-js" lang="en">  <!--<![endif]-->
+<head>
+
+    <!-- Basic Page Needs -->
+    <meta charset="utf-8">
+    <title>My ride</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-signin-client_id" content="651091293588-7f25m6bsbbo1tte96dvp7eslduc9hqcb.apps.googleusercontent.com">
+    <!-- Mobile Specific Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Styles -->
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+
+
+    <!-- Bootstrap -->
+    <link href="/web/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Forms -->
+    <link href="/web/css/jquery.idealforms.css" rel="stylesheet">
+    <!-- Select  -->
+    <link href="/web/css/jquery.idealselect.css" rel="stylesheet">
+    <!-- Slicknav  -->
+    <link href="/web/css/slicknav.css" rel="stylesheet">
+    <!-- Main style -->
+    <link href="/web/css/style.css" rel="stylesheet">
+    <link href="/web/css/login-style.css" rel="stylesheet">
+    <link href="/main-style.css" rel="stylesheet">
+
+
+    <!-- Modernizr -->
+    <script src="/web/js/modernizr.js"></script>
+
+    <!-- Fonts -->
+    <link href="/web/css/font-awesome.min.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script src="https://apis.google.com/js/platform.js?onload=init" async defer></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+<header class="header">
+    <div class="main-baner">
+
+        <div class="fullscreen background parallax clearfix" style="background-image:url('/web/img/tumblr_n7yhhvUQtx1st5lhmo1_1280.jpg');" data-img-width="1600" data-img-height="1064">
+
+            <div class="main-parallax-content">
+
+                <div class="second-parallax-content">
+
+                    <section class="container">
+
+                        <div class="row">
+
+                            <div class="main-header-container clearfix">
+
+                                <div class="col-md-4 col-sm-12 col-xs-12">
+
+                                    <div class="logo">
+                                        <h1>Trip Pooling</h1>
+                                    </div><!-- end .logo -->
+
+                                </div><!-- end .col-sm-4 -->
+
+                                <div class="col-md-8 col-sm-8 col-xs-12">
+
+                                    <nav id="nav" class="main-navigation">
+
+                                        <ul class="navigation">
+
+                                        </ul>
+
+                                    </nav><!-- end .main-navigation -->
+
+
+                                </div><!-- end .col-md-8 -->
+
+                            </div><!-- end .main-header-container -->
+                            <div class="main-content-agile">
+                                <div class="sub-main-w3 login-form">
+                                    {{#if msg}}<p class="error">{{msg}}</p>{{/if}}
+                                    <form action="/admin/do-login" method="post">
+                                        <input placeholder="Username" name="username" class="user" type="text" required=""><br>
+                                        <input  placeholder="Password" name="password" class="pass" type="password" ><br>
+                                        <input class="submit-arrow" type="submit" value="">
+
+                                    </form>
+                                </div>
+                            </div>
+
+                        </div><!-- end .row -->
+
+                    </section><!-- end .container -->
+
+                </div><!-- end .second-parallax-content -->
+
+            </div><!-- end .main-parallax-content -->
+
+        </div><!-- end .background .parallax -->
+
+    </div><!-- end .main-baner -->
+
+</header><!-- end .header -->
+
+<section class="main-content">
+
+    <div class="container">
+        <div class="row">
+
+            <div class="page-content">
+
+                <div class="services clearfix">
+
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+
+                        <div class="page-sub-title textcenter">
+                            <h2>Services</h2>
+                            <div class="line"></div>
+                        </div><!-- end .page-sub-title -->
+
+                    </div><!-- end .col-md-12 col-sm-12 col-xs-12 -->
+
+                    <div class="col-md-4 col-sm-4 col-xs-12">
+
+                        <article class="service">
+
+                            <i class="fa fa-car"></i>
+
+                            <h3>Share your ride</h3>
+                            <p>Are you getting sick of traveling alone and spent so much money on gas? Share your ride today,and forget about this problems.</p>
+
+
+                        </article><!-- end .service -->
+
+                    </div><!-- end .col-md-4 -->
+
+                    <div class="col-md-4 col-sm-4 col-xs-12">
+
+                        <article class="service">
+
+                            <i class="fa fa-users"></i>
+
+                            <h3>Find new friends</h3>
+                            <p>Finding new friends is easier than ever,nothing makes better friendship than spending few hours casually chatting with some interesting people.</p>
+
+                        </article><!-- end .service -->
+
+                    </div><!-- end .col-md-4 -->
+
+                    <div class="col-md-4 col-sm-4 col-xs-12">
+
+                        <article class="service">
+
+                            <i class="fa fa-map-marker"></i>
+
+                            <h3>Go to new places</h3>
+                            <p> Find some new favourite place to chill out,you have no longer got excuse for not travelling and discovering. </p>
+
+                        </article><!-- end .service -->
+
+                    </div><!-- end .col-md-4 -->
+
+                </div><!-- end .services -->
+
+                <div class="clearfix"></div>
+
+                <div class="col-md-12 col-sm-12 col-xs-12">
+
+                    <div class="background parallax" style="background-image:url('/web/img/XWBIL5.jpg');" data-img-width="1600" data-img-height="1064">
+
+                        <div class="main-parallax-content">
+
+                            <div class="second-parallax-content">
+
+                                <div class="parallax-content clearfix">
+
+                                    <div class="col-md-4 col-sm-4 col-xs-12">
+                                        <div class="site-stat">
+                                            <span class="counter">5,000</span>
+                                            <span>Happy users</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4 col-sm-4 col-xs-12">
+                                        <div class="site-stat">
+                                            <span class="counter">7,000</span>
+                                            <span>Successful rides</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4 col-sm-4 col-xs-12">
+                                        <div class="site-stat">
+                                            <span class="counter">600,000</span>
+                                            <span>Miles traveled in a good company</span>
+                                        </div>
+                                    </div>
+
+                                </div><!-- end .parallax-content -->
+
+                            </div><!-- end .main-parallax-content -->
+
+                        </div><!-- end .paralax -->
+
+                    </div><!-- end .fullscreen .background .parallax -->
+
+                </div><!-- end .col-md-12 -->
+
+                <div class="clearfix"></div>
+
+
+
+                <div class="clearfix"></div>
+
+
+
+            </div><!-- end .page-content -->
+
+        </div><!-- end .row -->
+    </div><!-- end .container -->
+
+</section><!-- end .main-content -->
+
+<footer id="footer">
+
+    <div class="footer-copyright">
+
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    Copyright by Trip Pool
+                </div>
+
+            </div><!-- end .row -->
+        </div><!-- end .container -->
+
+    </div><!-- end .footer-copyright -->
+
+</footer><!-- end #footer -->
+
+
+
+
+
+<!-- Javascript -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<!-- Bootstrap -->
+<script type="text/javascript" src="/web/js/bootstrap.min.js"></script>
+<!-- Main jQuery -->
+<script type="text/javascript" src="/web/js/jquery.main.js"></script>
+<!-- Form -->
+<script type="text/javascript" src="/web/js/jquery.idealforms.min.js"></script>
+<script type="text/javascript" src="/web/js/jquery.idealselect.min.js"></script>
+<script type="text/javascript" src="/web/js/jquery-ui-1.10.4.custom.min.js"></script>
+<!-- Menu -->
+<script type="text/javascript" src="/web/js/hoverIntent.js"></script>
+<script type="text/javascript" src="/web/js/superfish.js"></script>
+<!-- Counter-Up  -->
+<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
+<script type="text/javascript" src="/web/js/jquery.counterup.min.js"></script>
+<!-- Rating  -->
+<script type="text/javascript" src="/web/js/bootstrap-rating-input.min.js"></script>
+<!-- Slicknav  -->
+<script type="text/javascript" src="/web/js/jquery.slicknav.min.js"></script>
+<script type="text/javascript" src="/main-script.js"></script>
+<sript>
+
+</sript>
+</body>
+</html>

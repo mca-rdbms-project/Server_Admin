@@ -21,6 +21,7 @@
                         <th>Driver ID</th>
                         <th>Status</th>
 
+
                     </tr>
                     </thead>
                     <tbody>
@@ -39,6 +40,7 @@
                                 <td>{{this.destination}}</td>
                                 <td>{{this.Driver ID}}</td>
                                 <td>{{this.Status}}</td>
+                                <td><a href="/admin/delete-trip/{{this.trip_id}}">DELETE</a> </td>
 
                             </tr>
                         {{/each}}

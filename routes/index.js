@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 const db=require('../config/db');
 const conn=db.db;
+var msg91 = require("msg91")("150002AZFP9V8Yh58fcf044", "TRIP POOL", "4" );
 var distance = require('google-distance');
 distance.apiKey="AIzaSyBSjMmeNnPp00VQhtalS1czrRCYf2ATYLg"
 
@@ -261,7 +262,25 @@ router.post("/request-trip",function (req,res) {
 
                         conn.query(query, function (err, result) {
                             if (!err) {
-                                res.json({"status": true})
+                                var query="select u.mobile from Users u,Trips t where u.user_id=t.user";
+                                conn.query(query,function (err,result) {
+                                    var mob=result[0];
+                                    mob=mob.mobile;
+                                    var msg="A new passenger has requested to join with your trip. Please login in TRIP POOL App tor view details";
+                                    msg91.send(mob, msg, function(err, response){
+                                        if(err)
+                                        {
+                                            res.json({"status":false});
+                                        }
+                                        else
+                                        {
+                                            res.json({"status":true});
+                                        }
+                                    });
+
+                                })
+
+
                             }
                             else {
                                 console.log(err);

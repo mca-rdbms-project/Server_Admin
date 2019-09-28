@@ -1,6 +1,9 @@
 var express = require('express');
 var router = express.Router();
 
+var msg91 = require("msg91")("150002AZFP9V8Yh58fcf044", "TRIP POOL", "4" );
+
+
 const fileUpload = require('express-fileupload');
 const bodyParser = require('body-parser');
 const mysql = require('mysql');
@@ -8,7 +11,39 @@ const path = require('path');
 const app = express();
 const db=require('../config/db');
 const conn=db.db;
+
 /* GET users listing. */
+router.get("/",function (req,res) {
+    res.redirect("/admin/login");
+})
+router.get('/login',function (req,res) {
+    if(req.session.loggedIn==true){
+        res.redirect("/admin/cities");
+    }
+    res.render("login",{layout:false})
+
+})
+router.post('/do-login',function (req,res) {
+
+    var data=req.body;
+    console.log(data)
+    var query="select * from Admin where username='"+data.username+"' && password='"+data.password+"'";
+    conn.query(query,function (err,result) {
+        if(!err){
+            console.log(result);
+            if(result.length>0){
+                req.session.loggedIn=true;
+                res.redirect("/admin/cities");
+            }
+            else {
+                res.render("login",{layout:false,"msg":"Username or Password wrong"})
+            }
+        }
+        else{
+            res.render("login",{layout:false,"msg":"Username or Password wrong"});
+        }
+    })
+})
 router.get('/cities', function(req, res, next) {
 
     conn.query('SELECT * FROM Cities', function(err, results) {
@@ -70,7 +105,7 @@ router.post('/doAddCollege',function (req,res,next) {
     }
 })
 router.get("/users",function (req,res,next) {
-    var query="select u.first_name,u.last_name,u.email,u.mobile,u.user_type,u.gender,c.college_name,c.college_address,t.city_name " +
+    var query="select u.user_id,u.first_name,u.last_name,u.email,u.mobile,u.user_type,u.gender,c.college_name,c.college_address,t.city_name " +
         "from Users u,Colleges c,Cities t where u.city=t.city_id && u.college=c.college_id";
     conn.query(query,function (err,result) {
         console.log(result);
@@ -93,6 +128,46 @@ router.get("/delete-college/:id",function (req,res) {
         if (err) throw err
         console.log(done)
         res.redirect("/admin/colleges");
+    })
+})
+router.get("/delete-city/:id",function (req,res) {
+    var id=req.params.id;
+    console.log(id)
+    var query="delete from Cities where city_id='"+id+"'";
+    conn.query(query,function (err,done) {
+        if (err) throw err
+        console.log(done)
+        res.redirect("/admin/cities");
+    })
+})
+router.get("/delete-user/:id",function (req,res) {
+    var id=req.params.id;
+    console.log(id)
+    var query="delete from Users where user_id='"+id+"'";
+    conn.query(query,function (err,done) {
+        if (err) throw err
+        console.log(done)
+        res.redirect("/admin/users");
+    })
+})
+router.get("/delete-trip/:id",function (req,res) {
+    var id=req.params.id;
+    console.log(id)
+    var query="delete from Users where trip_id='"+id+"'";
+    conn.query(query,function (err,done) {
+        if (err) throw err
+        console.log(done)
+        res.redirect("/admin/trips");
+    })
+})
+router.get("/delete-request/:id",function (req,res) {
+    var id=req.params.id;
+    console.log(id)
+    var query="delete from Users where req_id='"+id+"'";
+    conn.query(query,function (err,done) {
+        if (err) throw err
+        console.log(done)
+        res.redirect("/admin/requests");
     })
 })
 module.exports = router;
