@@ -255,6 +255,7 @@ router.post("/request-trip",function (req,res) {
 
         conn.query(check,function (err,data) {
             if(!err) {
+                console.log("fetch data:"+data);
                 if (data.length == 0) {
                     var query = "insert into Requests values(null,'" + trip_id + "','" + user + "',null)";
                     conn.query(query, function (err, id) {
