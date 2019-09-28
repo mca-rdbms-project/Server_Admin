@@ -291,7 +291,7 @@ router.post("/request-trip",function (req,res) {
                     })
                 }
                 else {
-                    console.log("Result:"+result);
+                    console.log("Result:"+data);
                     res.json({"status": false});
                 }
             }
