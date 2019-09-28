@@ -259,22 +259,20 @@ router.post("/request-trip",function (req,res) {
                     var query = "insert into Requests values(null,'" + trip_id + "','" + user + "',null)";
                     conn.query(query, function (err, id) {
 
-
+                        if(!err){
                         conn.query(query, function (err, result) {
                             if (!err) {
-                                var query="select u.mobile from Users u,Trips t where u.user_id=t.user";
-                                conn.query(query,function (err,result) {
-                                    var mob=result[0];
-                                    mob=mob.mobile;
-                                    var msg="A new passenger has requested to join with your trip. Please login in TRIP POOL App tor view details";
-                                    msg91.send(mob, msg, function(err, response){
-                                        if(err)
-                                        {
-                                            res.json({"status":false});
+                                var query = "select u.mobile from Users u,Trips t where u.user_id=t.user";
+                                conn.query(query, function (err, result) {
+                                    var mob = result[0];
+                                    mob = mob.mobile;
+                                    var msg = "A new passenger has requested to join with your trip. Please login in TRIP POOL App tor view details";
+                                    msg91.send(mob, msg, function (err, response) {
+                                        if (err) {
+                                            res.json({"status": false});
                                         }
-                                        else
-                                        {
-                                            res.json({"status":true});
+                                        else {
+                                            res.json({"status": true});
                                         }
                                     });
 
@@ -288,10 +286,12 @@ router.post("/request-trip",function (req,res) {
                             }
 
                         })
+                    }
 
                     })
                 }
                 else {
+                    console.log("Result:"+result);
                     res.json({"status": false});
                 }
             }

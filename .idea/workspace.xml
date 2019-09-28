@@ -1,17 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e44f35fe-90b6-4c94-a1e0-7b8c315d56f7" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/views/login.hbs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/users.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/users.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/cities.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/cities.hbs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/trips.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/trips.hbs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/users.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/users.hbs" afterDir="false" />
-    </list>
+    <list default="true" id="e44f35fe-90b6-4c94-a1e0-7b8c315d56f7" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -316,16 +306,15 @@
       <workItem from="1569217964873" duration="1369000" />
       <workItem from="1569339950760" duration="8562000" />
       <workItem from="1569556606956" duration="4198000" />
-      <workItem from="1569651734482" duration="6533000" />
+      <workItem from="1569651734482" duration="6929000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="256046000" />
+    <option name="totallyTimeSpent" value="256442000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="25" width="1366" height="743" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19731943" />
       <window_info anchor="bottom" id="TODO" order="6" />
