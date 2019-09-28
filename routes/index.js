@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 const db=require('../config/db');
 const conn=db.db;
-var msg91 = require("msg91")("150002AZFP9V8Yh58fcf044", "T-POOL", "4" );
+var msg91 = require("msg91")("150002AZFP9V8Yh58fcf044", "TRPOOL", "4" );
 var distance = require('google-distance');
 distance.apiKey="AIzaSyBSjMmeNnPp00VQhtalS1czrRCYf2ATYLg"
 
