@@ -175,7 +175,7 @@ router.get("/delete-requests/:id",function (req,res) {
     conn.query(query,function (err,done) {
         if (err) throw err
         console.log(done)
-        res.redirect("/admin/requests");
+        res.redirect("/admin/view-requests");
     })
 })
 module.exports = router;
