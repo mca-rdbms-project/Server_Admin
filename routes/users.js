@@ -168,10 +168,10 @@ router.get("/delete-trip/:id",function (req,res) {
         res.redirect("/admin/trips");
     })
 })
-router.get("/delete-request/:id",function (req,res) {
+router.get("/delete-requests/:id",function (req,res) {
     var id=req.params.id;
     console.log(id)
-    var query="delete from Users where req_id='"+id+"'";
+    var query="delete from Requests where req_id='"+id+"'";
     conn.query(query,function (err,done) {
         if (err) throw err
         console.log(done)
