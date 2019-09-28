@@ -267,12 +267,15 @@ router.post("/request-trip",function (req,res) {
                                 conn.query(query, function (err, result) {
                                     var mob = result[0];
                                     mob = mob.mobile;
+                                    console.log("mobile :"+mob)
                                     var msg = "A new passenger has requested to join with your trip. Please login in TRIP POOL App tor view details";
                                     msg91.send(mob, msg, function (err, response) {
                                         if (err) {
+                                            console.log("msgerr:"+err)
                                             res.json({"status": false});
                                         }
                                         else {
+                                            console.log("msg91: "+response)
                                             res.json({"status": true});
                                         }
                                     });

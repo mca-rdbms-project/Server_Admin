@@ -10,33 +10,19 @@
                 <table id="example2" class="table table-bordered table-hover">
                     <thead>
                     <tr>
+                        <th>Req ID</th>
                         <th>Trip ID</th>
-                        <th>Date</th>
-                        <th>Driver Name</th>
-                        <th>Origin</th>
-                        <th>Destination</th>
-                        <th>Passenger Name</th>
-                        <th>Status</th>
+
 
                     </tr>
                     </thead>
                     <tbody>
-                    {{#if Trips}}
-                        {{#each Trips}}
+                    {{#if Requests}}
+                        {{#each Requests}}
                             <tr>
-                                <td>{{this.trip_id}}</td>
-                                <td>{{this.date}}
+                                <td>{{this.req_id}}</td>
+                                <td>{{this.trip_id}}
                                 </td>
-                                <td>{{this.time}}</td>
-                                <td>{{this.vehicle}}</td>
-                                <td>{{this.seats}}</td>
-                                <td>{{this.v_details}}</td>
-                                <td>{{this.rules}}</td>
-                                <td>{{this.origin}}</td>
-                                <td>{{this.destination}}</td>
-                                <td>{{this.user}}</td>
-                                <td>{{this.status}}</td>
-
                             </tr>
                         {{/each}}
                     {{/if}}

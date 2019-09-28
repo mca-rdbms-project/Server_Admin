@@ -120,6 +120,14 @@ router.get("/view-trips",function (req,res) {
         res.render("view-trips",{"Trips":trips})
     })
 })
+router.get("/view-requests",function (req,res) {
+    var query="select * from Requests";
+    conn.query(query,function (err,trips) {
+        trips=Object.values(JSON.parse(JSON.stringify(trips)))
+        console.log(trips)
+        res.render("view-requests",{"Requests":trips})
+    })
+})
 router.get("/delete-college/:id",function (req,res) {
     var id=req.params.id;
     console.log(id)
