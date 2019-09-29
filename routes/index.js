@@ -212,18 +212,18 @@ router.post("/find-trip",function (req,res) {
                             },
                             function(err, result) {
                                 if (err) return console.log(err);
-                                console.log(data.distanceValue);
-                                oDist=data.distanceValue;
+                                console.log(result.distanceValue);
+                                oDist=result.distanceValue;
 
                                 distance.get(
                                     {
                                         origin: item.destination,
                                         destination: data.to_location
                                     },
-                                    function(err, data) {
+                                    function(err, result) {
                                         if (err) return console.log(err);
-                                        console.log(data.distanceValue);
-                                        dDist=data.distanceValue;
+                                        console.log(result.distanceValue);
+                                        dDist=result.distanceValue;
 
                                         if(oDist<=10 && dDist<=10){
                                             list.push(item);
