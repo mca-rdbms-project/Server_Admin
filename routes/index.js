@@ -483,6 +483,10 @@ router.post("/reject-request",function (req,res) {
                         res.json({"status":true});
                     }
                 })
+
+            }
+            else{
+                console.log(err)
                 res.json({"status":true});
             }
         })
