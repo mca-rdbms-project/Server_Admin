@@ -286,6 +286,7 @@ router.post("/find-trip",function (req,res) {
 router.get("/list-view-rider",function (req,res) {
     console.log(gtrips);
     res.json(gtrips);
+    gtrips={}
 
 })
 router.post("/request-trip",function (req,res) {
