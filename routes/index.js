@@ -205,8 +205,9 @@ router.post("/find-trip",function (req,res) {
                     trips.forEach(function (item) {
                         var oDist=findDistance(item.origin, data.f_location);
                         var dDist=findDistance(item.destination, data.to_location)
-
-                        if(oDist<=10,dDist<=10){
+                        console.log("oDist:"+oDist)
+                        console.log("dDist:"+dDist)
+                        if(oDist<=10 && dDist<=10){
                             data.push(item);
                         }
                         counter--;
