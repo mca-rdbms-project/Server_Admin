@@ -90,6 +90,28 @@ router.post('/user-registration', function(req, res, next) {
     }
 
 });
+router.post("/check-otp",function (req,res) {
+    if(req.body) {
+        var data = new Object(req.body);
+        data = JSON.stringify(data)
+        data = JSON.parse(data)
+        console.log(data);
+
+        if(data.mobile==reg_details.data.mno && reg_details.otp==data.otp){
+            var data=reg_details.data;
+            var insert="insert into Users values(null,'"+data.f_name+"','"+data.l_name+"','"+data.email+"','"+data.mno+"','"+data.city+"','"+data.college+"','"+data.user_type+"','"+data.gender+"','"+data.password+"',null)";
+       conn.query(insert, function(err, results) {
+           if (err) throw err
+           console.log(results)
+           res.json({"status":true});
+
+       })
+        }
+        else{
+            res.json({"status":false});
+        }
+    }
+})
 var user_id;
 router.post('/user-login',function (req,res,next) {
     if(req.body){
