@@ -199,7 +199,7 @@ router.post("/find-trip",function (req,res) {
 
                 //Promise.all([findDistance(item.origin, data.f_location), findDistance(item.destination, data.to_location)])
                 if (trips.length > 0) {
-                    var data=[];
+                    var list=[];
                     var counter=trips.length;
                    // trips.forEach(function (item)
                     trips.forEach(function (item) {
@@ -208,17 +208,18 @@ router.post("/find-trip",function (req,res) {
                         console.log("oDist:"+oDist)
                         console.log("dDist:"+dDist)
                         if(oDist<=10 && dDist<=10){
-                            data.push(item);
+                            list.push(item);
                         }
                         counter--;
                         if(counter==0){
-                            sendData(data);
+                            sendData(list);
                         }
 
                     })
-                    function sendData(data){
-                        gtrips.data=null;
-                        gtrips.data = trips;
+                    function sendData(list){
+
+                       // gtrips.data = trips;
+                        gtrips.data = list;
                         //console.log(obj);
                         gtrips.status=true;
 
