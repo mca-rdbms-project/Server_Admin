@@ -1,22 +1,34 @@
 var express = require('express');
 var router = express.Router();
-var msg91 = require("msg91")("150002AK9xZozlR5d905af6", "TRPOOL" , "4" );
+var msg91 = require("msg91")("150002A5XhiVcr75d909049", "TRPOOL", "4" );
+var msg91=require('msg91-sms');
+var authkey='150002A5XhiVcr75d909049';
 const db=require('../config/db');
 const conn=db.db;
 
-var distance = require('google-distance');
-distance.apiKey="AIzaSyBSjMmeNnPp00VQhtalS1czrRCYf2ATYLg"
-router.get("/otps",function (req,res,next) {
-    var msg = "A new passenger has requested to join with your trip. Please login in TRIP POOL App tor view details";
+/*var distance = require('google-distance');
+distance.apiKey="AIzaSyBSjMmeNnPp00VQhtalS1czrRCYf2ATYLg"*/
+router.get("/otp",function (req,res) {
+   /* var msg = "A new passenger has requested to join with your trip. Please login in TRIP POOL App tor view details";
     msg91.send("7736409656", msg, function (err, response) {
         if (err) {
-            console.log("msgerr:"+err)
+            console.log("msgerr:"+err);
             res.json({"status": false});
         }
         else {
             console.log("msg91: "+response)
             res.json({"status": true});
         }
+    });*/
+    var number='7736409656';
+    var msg="testing";
+    var senderid="TRPOOL";
+    var route='4';
+    var dialcode='91';
+    msg91.sendOne(authkey,number,msg,senderid,route,dialcode,function(response){
+
+        console.log(response);
+        res.json({"status": true});
     });
 })
 /* GET home page. */
@@ -283,15 +295,15 @@ router.post("/request-trip",function (req,res) {
                                     mob = mob.mobile;
                                     console.log("mobile :"+mob)
                                     var msg = "A new passenger has requested to join with your trip. Please login in TRIP POOL App tor view details";
-                                    msg91.send(mob, msg, function (err, response) {
-                                        if (err) {
-                                            console.log("msgerr:"+err)
-                                            res.json({"status": false});
-                                        }
-                                        else {
-                                            console.log("msg91: "+response)
-                                            res.json({"status": true});
-                                        }
+                                    var number=mob;
+
+                                    var senderid="TRPOOL";
+                                    var route='4';
+                                    var dialcode='91';
+                                    msg91.sendOne(authkey,number,msg,senderid,route,dialcode,function(response){
+
+                                        console.log(response);
+                                        res.json({"status": true});
                                     });
 
                                 })

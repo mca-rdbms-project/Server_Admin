@@ -5,10 +5,12 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var hbs=require('express-handlebars');
 var bodyParser=require("body-parser");
+
+var session = require('express-session');
+
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var webRouter=require('./routes/web')
-var session = require('express-session');
 var app = express();
 var db =require('./config/db');
 // view engine setup

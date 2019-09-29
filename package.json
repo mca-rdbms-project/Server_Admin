@@ -20,8 +20,10 @@
     "http-errors": "~1.6.3",
     "morgan": "~1.9.1",
     "msg91": "0.0.6",
+    "msg91-sms": "^1.0.1",
     "mysql": "^2.17.1",
     "promise": "^8.0.3",
-    "req-flash": "0.0.3"
+    "req-flash": "0.0.3",
+    "sendotp": "^1.2.9"
   }
 }
