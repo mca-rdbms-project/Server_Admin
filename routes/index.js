@@ -358,18 +358,19 @@ router.post("/ride-request",function (req,res) {
     }
 
 })
-router.post("/accept-ride",function (req,res) {
-    console.log(req.body)
-    res.json({"status":true})
-})
-router.post("/reject-ride",function (req,res) {
-    console.log(req.body)
-    res.json({"status":true})
-})
 router.get("/list-view-rider",function (req,res) {
     console.log(gtrips);
     res.json(gtrips);
 
+})
+
+router.post("/accept-request",function (req,res) {
+    console.log(req.body)
+    res.json({"status":true})
+})
+router.post("/reject-request",function (req,res) {
+    console.log(req.body)
+    res.json({"status":true})
 })
 
 
