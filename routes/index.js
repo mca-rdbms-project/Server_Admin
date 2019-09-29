@@ -54,34 +54,35 @@ router.post('/user-registration', function(req, res, next) {
         data=JSON.parse(data)
 
         console.log(data)
-        reg_details.data=data;
-        var otp = random(four);
+        var query="select * from Users where mobile='"+data.mno+"'"
+        conn.query(query,function (err,result) {
+            if(!err){
+                if(result.length>0){
+                    res.json({"status":false,"message":"Mobile number already registered"})
+                }
+                else{
+                    reg_details.data=data;
+                    var otp = random(four);
 
-        reg_details.otp=otp;
-        var mob=data.mno;
-        var msg = "OTP From TRIP POOL is "+otp+"";
-        var number=mob;
+                    reg_details.otp=otp;
+                    var mob=data.mno;
+                    var msg = "OTP From TRIP POOL is "+otp+"";
+                    var number=mob;
 
-        var senderid="TRPOOL";
-        var route='4';
-        var dialcode='91';
-        msg91.sendOne(authkey,number,msg,senderid,route,dialcode,function(response){
+                    var senderid="TRPOOL";
+                    var route='4';
+                    var dialcode='91';
+                    msg91.sendOne(authkey,number,msg,senderid,route,dialcode,function(response){
 
-            console.log(response);
-            res.json({"status": true});
-        });
+                        console.log(response);
+                        res.json({"status": true});
+                    });
+                }
+            }
+        })
 
 
 
-
-
-        /*var insert="insert into Users values(null,'"+data.f_name+"','"+data.l_name+"','"+data.email+"','"+data.mno+"','"+data.city+"','"+data.college+"','"+data.user_type+"','"+data.gender+"','"+data.password+"',null)";
-        conn.query(insert, function(err, results) {
-            if (err) throw err
-            console.log(results)
-            res.json({"status":true});
-
-        })*/
 
     }
     else{
