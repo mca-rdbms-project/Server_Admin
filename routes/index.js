@@ -1,11 +1,24 @@
 var express = require('express');
 var router = express.Router();
+var msg91 = require("msg91")("150002AK9xZozlR5d905af6", "DHISHA", "4" );
 const db=require('../config/db');
 const conn=db.db;
-var msg91 = require("msg91")("150002AZFP9V8Yh58fcf044","TRPOOL", "4" );
+
 var distance = require('google-distance');
 distance.apiKey="AIzaSyBSjMmeNnPp00VQhtalS1czrRCYf2ATYLg"
-
+router.get("/otps",function (req,res,next) {
+    var msg = "A new passenger has requested to join with your trip. Please login in TRIP POOL App tor view details";
+    msg91.send("7736409656", msg, function (err, response) {
+        if (err) {
+            console.log("msgerr:"+err)
+            res.json({"status": false});
+        }
+        else {
+            console.log("msg91: "+response)
+            res.json({"status": true});
+        }
+    });
+})
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
@@ -309,6 +322,19 @@ router.post("/request-trip",function (req,res) {
 
     }
 
+})
+router.get("/otp",function (req,res) {
+    var msg = "A new passenger has requested to join with your trip. Please login in TRIP POOL App tor view details";
+    msg91.send("7736409656", msg, function (err, response) {
+        if (err) {
+            console.log("msgerr:"+err)
+            res.json({"status": false});
+        }
+        else {
+            console.log("msg91: "+response)
+            res.json({"status": true});
+        }
+    });
 })
 var driver;
 router.post("/find-requests",function (req,res,next) {
