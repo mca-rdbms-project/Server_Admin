@@ -205,6 +205,7 @@ router.post("/find-trip",function (req,res) {
                     trips.forEach(function (item) {
                         var oDist;
                         var dDist;
+                        item.time=item.Date+" "+item.time;
                         distance.get(
                             {
                                 origin: item.origin,
@@ -453,6 +454,12 @@ router.post("/reject-request",function (req,res) {
         var query="update Requests set status='rejected' where req_id='"+req_id+"'";
         conn.query(query,function (err,result) {
             if(!err){
+                query="select u.mobile from Users u,Requests r where u.user_id=r.user_id"
+                conn.query(query,function (err,result) {
+                    if(!err){
+
+                    }
+                })
                 res.json({"status":true});
             }
         })
