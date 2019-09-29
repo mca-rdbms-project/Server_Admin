@@ -328,20 +328,25 @@ router.post("/request-trip",function (req,res) {
 
                                 var query = "select u.mobile from Users u,Trips t where t.trip_id='"+trip_id+"' u.user_id=t.user";
                                 conn.query(query, function (err, result) {
-                                    var mob = result[0];
-                                    mob = mob.mobile;
-                                    console.log("mobile :"+mob)
-                                    var msg = "A new passenger has requested to join with your trip. Please login in TRIP POOL App tor view details";
-                                    var number=mob;
+                                    if (!err) {
+                                        console.log(result)
+                                        var mob = result[0].mobile;
+                                        console.log("mobile :" + mob)
+                                        var msg = "A new passenger has requested to join with your trip. Please login in TRIP POOL App tor view details";
+                                        var number = mob;
 
-                                    var senderid="TRPOOL";
-                                    var route='4';
-                                    var dialcode='91';
-                                    msg91.sendOne(authkey,number,msg,senderid,route,dialcode,function(response){
+                                        var senderid = "TRPOOL";
+                                        var route = '4';
+                                        var dialcode = '91';
+                                        msg91.sendOne(authkey, number, msg, senderid, route, dialcode, function (response) {
 
-                                        console.log(response);
-                                        res.json({"status": true});
-                                    });
+                                            console.log(response);
+                                            res.json({"status": true});
+                                        });
+                                    }
+                                    else {
+                                        console.log(err)
+                                    }
 
                                 })
 
