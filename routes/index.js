@@ -308,7 +308,7 @@ router.post("/request-trip",function (req,res) {
         var trip_id=data.trip_id;
         var user=data.user_id;
         trip_id=trip_id.substring(9);
-
+        console.log("trip_id:"+trip_id)
         user=user.substring(2);
         user=user.substring(0,user.length-1);
 
@@ -321,7 +321,7 @@ router.post("/request-trip",function (req,res) {
             if(!err) {
                 console.log("fetch data:"+data);
                 if (data.length == 0) {
-                    var query = "insert into Requests values(null,'" + trip_id + "','" + user + "',2,'pending')";
+                    var query = "insert into Requests values(null,'"+trip_id+"','"+user+"',2,'pending')";
                     conn.query(query, function (err, id) {
 
                         if(!err){
