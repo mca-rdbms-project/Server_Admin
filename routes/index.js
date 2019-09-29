@@ -104,6 +104,18 @@ router.post("/check-otp",function (req,res) {
        conn.query(insert, function(err, results) {
            if (err) throw err
            console.log(results)
+           var mob=data.mobile;
+           var msg = "Greetings from TRIP POOL \n\nWe are happy to have you as a member of our community, feel free to explore our ";
+           var number=mob;
+
+           var senderid="TRPOOL";
+           var route='4';
+           var dialcode='91';
+           msg91.sendOne(authkey,number,msg,senderid,route,dialcode,function(response){
+
+               console.log(response);
+               res.json({"status": true});
+           });
            res.json({"status":true});
 
        })
@@ -570,6 +582,9 @@ router.post("/reject-request",function (req,res) {
         })
 
     }
+})
+router.get("/contact",function (req,res) {
+    res.render("contact",{layout:false})
 })
 
 
