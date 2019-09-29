@@ -203,7 +203,39 @@ router.post("/find-trip",function (req,res) {
                     var counter=trips.length;
                    // trips.forEach(function (item)
                     trips.forEach(function (item) {
-                        getList();
+                        var oDist;
+                        var dDist;
+                        distance.get(
+                            {
+                                origin: item.origin,
+                                destination:data.f_location
+                            },
+                            function(err, data) {
+                                if (err) return console.log(err);
+                                console.log(data.distanceValue);
+                                oDist=data.distanceValue;
+
+                                distance.get(
+                                    {
+                                        origin: item.destination,
+                                        destination:data.to_location
+                                    },
+                                    function(err, data) {
+                                        if (err) return console.log(err);
+                                        console.log(data.distanceValue);
+                                        dDist=data.distanceValue;
+
+                                        if(oDist<=10 && dDist<=10){
+                                            list.push(item);
+                                        }
+                                        counter--;
+                                    });
+                            });
+
+                        if(counter==0){
+                            sendData(list);
+                        }
+                        /*getList();
                         async function getList () {
 
 
@@ -218,7 +250,8 @@ router.post("/find-trip",function (req,res) {
                         if(counter==0){
                             sendData(list);
                         }
-                        }
+                        }*/
+
 
                     })
                     function sendData(list){
