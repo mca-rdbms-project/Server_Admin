@@ -261,8 +261,8 @@ router.post("/find-trip",function (req,res) {
                         gtrips.data = list;
                         //console.log(obj);
                         gtrips.status=true;
-
-                        res.json({"status":true});
+                        console.log(gtrips);
+                        res.json(gtrips);
                     }
 
 
