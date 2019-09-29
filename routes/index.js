@@ -205,7 +205,7 @@ router.post("/find-trip",function (req,res) {
                     trips.forEach(function (item) {
                         var oDist;
                         var dDist;
-                        item.time=item.Date+" "+item.time;
+                        item.time=item.date+" "+item.time;
                         distance.get(
                             {
                                 origin: item.origin,
