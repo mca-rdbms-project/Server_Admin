@@ -197,51 +197,35 @@ router.post("/find-trip",function (req,res) {
             else {
                 trips=Object.values(JSON.parse(JSON.stringify(trips)))
 
-
+                //Promise.all([findDistance(item.origin, data.f_location), findDistance(item.destination, data.to_location)])
                 if (trips.length > 0) {
+                    var data=[];
+                    var counter=trips.length;
                    // trips.forEach(function (item)
-                    for(var i=0;i<trips.length;i++)
-                    {
-                        var dists=fetchTrips(trips[i],data);
-                         async function fetchTrips(item,data) {
-                            return await Promise.all([findDistance(item.origin, data.f_location), findDistance(item.destination, data.to_location)]).then((arr) => {
+                    trips.forEach(function (item) {
+                        var oDist=findDistance(item.origin, data.f_location);
+                        var dDist=findDistance(item.destination, data.to_location)
 
-                            });
+                        if(oDist<=10,dDist<=10){
+                            data.push(item);
                         }
-                        console.log(dists);
+                        counter--;
+                        if(counter==0){
+                            sendData(data);
+                        }
 
-                     /* async function fetchTrips() {
+                    })
+                    function sendData(data){
+                        gtrips.data=null;
+                        gtrips.data = trips;
+                        //console.log(obj);
+                        gtrips.status=true;
 
-
-                          var oDist = findDistance(item.origin, data.f_location)
-                          var dDist = findDistance(item.destination, data.to_location)
-                          console.log("oDist :" + oDist);
-                          console.log("dDist :" + dDist);
-                          var oDist;
-                          var dDist;
-                          let distCal = await findDistance(item.origin, data.f_location);
-                          distCal.then(function (data) {
-                              oDist = data;
-                              findDistance(item.destination, data.to_location).then(function (data) {
-                                  dDist = data
-                                  if (oDist <= 10000 && data.date == item.date && dDist <= 10000) {
-
-                                      item.distance = findDistance(item.origin, data.f_location)
-                                      tripArr.push(item);
-                                  }
-                              })
-
-                          })
-                      }*/
-
-
+                        res.json({"status":true});
                     }
-                    gtrips.data=null;
-                    gtrips.data = trips;
-                    //console.log(obj);
-                    gtrips.status=true;
 
-                    res.json({"status":true});
+
+
                 }
                 else {
                     res.json({"status": true, "Result": "Empty"});
