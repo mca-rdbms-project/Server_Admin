@@ -6,8 +6,8 @@ var authkey='150002A5XhiVcr75d909049';
 const db=require('../config/db');
 const conn=db.db;
 
-/*var distance = require('google-distance');
-distance.apiKey="AIzaSyBSjMmeNnPp00VQhtalS1czrRCYf2ATYLg"*/
+var distance = require('google-distance');
+distance.apiKey="AIzaSyBSjMmeNnPp00VQhtalS1czrRCYf2ATYLg"
 router.get("/otp",function (req,res) {
    /* var msg = "A new passenger has requested to join with your trip. Please login in TRIP POOL App tor view details";
     msg91.send("7736409656", msg, function (err, response) {
