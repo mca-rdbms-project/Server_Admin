@@ -262,7 +262,7 @@ router.post("/find-trip",function (req,res) {
                         //console.log(obj);
                         gtrips.status=true;
                         console.log(gtrips);
-                        res.json(gtrips);
+                        res.json({"status":true});
                     }
 
 
@@ -282,6 +282,11 @@ router.post("/find-trip",function (req,res) {
 
     }],"status":true}
     res.json(data);*/
+})
+router.get("/list-view-rider",function (req,res) {
+    console.log(gtrips);
+    res.json(gtrips);
+
 })
 router.post("/request-trip",function (req,res) {
     if(req.body) {
@@ -408,11 +413,7 @@ router.post("/ride-request",function (req,res) {
     }
 
 })
-router.get("/list-view-rider",function (req,res) {
-    console.log(gtrips);
-    res.json(gtrips);
 
-})
 
 router.post("/accept-request",function (req,res) {
     if(req.body) {
