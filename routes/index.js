@@ -325,8 +325,7 @@ router.post("/request-trip",function (req,res) {
                     conn.query(query, function (err, id) {
 
                         if(!err){
-                        conn.query(query, function (err, result) {
-                            if (!err) {
+
                                 var query = "select u.mobile from Users u,Trips t where u.user_id=t.user";
                                 conn.query(query, function (err, result) {
                                     var mob = result[0];
@@ -354,9 +353,7 @@ router.post("/request-trip",function (req,res) {
                             }
 
                         })
-                    }
 
-                    })
                 }
                 else {
                     console.log("Result:"+data);
