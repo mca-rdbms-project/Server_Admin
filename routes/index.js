@@ -58,7 +58,7 @@ router.post('/user-registration', function(req, res, next) {
         var otp = random(four);
 
         reg_details.otp=otp;
-        var mob=data.mobile;
+        var mob=data.mno;
         var msg = "OTP From TRIP POOL is "+otp+"";
         var number=mob;
 
