@@ -164,7 +164,7 @@ router.post("/do-offer-trip",function (req,res,next) {
         user=user.substring(0,user.length-1);
 
         console.log("user:"+user)
-        var query="INSERT INTO Trips VALUES (null,'"+data.date+"','"+data.time+"','"+data.vehicle+"',"+data.seats+",'"+v_details+"','"+rule+"','"+data.origin+"','"+data.destination+"','upcoming','"+user+"');"
+        var query="INSERT INTO Trips VALUES (null,'"+data.date+"','"+data.time+"','"+data.vehicle+"',"+data.seats+",'"+v_details+"','"+rule+"','"+data.origin+"','"+data.destination+"','upcoming','"+user+"',"+data.amount+");"
 
         conn.query(query,function (err,result) {
             if(err){
