@@ -229,12 +229,13 @@ router.post("/find-trip",function (req,res) {
                                             list.push(item);
                                         }
                                         counter--;
+                                        if(counter==0){
+                                            sendData(list);
+                                        }
                                     });
                             });
 
-                        if(counter==0){
-                            sendData(list);
-                        }
+
                         /*getList();
                         async function getList () {
 
