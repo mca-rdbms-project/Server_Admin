@@ -284,9 +284,12 @@ router.post("/find-trip",function (req,res) {
     res.json(data);*/
 })
 router.get("/list-view-rider",function (req,res) {
-    console.log(gtrips);
-    res.json(gtrips);
-    gtrips={}
+    setTimeout(() => {
+        console.log(gtrips);
+        res.json(gtrips);
+        gtrips={}
+    }, 2000)
+
 
 })
 router.post("/request-trip",function (req,res) {
