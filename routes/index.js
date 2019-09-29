@@ -3,8 +3,15 @@ var router = express.Router();
 var msg91 = require("msg91")("150002A5XhiVcr75d909049", "TRPOOL", "4" );
 var msg91=require('msg91-sms');
 var authkey='150002A5XhiVcr75d909049';
+var random=require('random-number');
+var four = {
+    min:  1000
+    , max:  9999
+    , integer: true
+}
 const db=require('../config/db');
 const conn=db.db;
+
 
 var distance = require('google-distance');
 distance.apiKey="AIzaSyBSjMmeNnPp00VQhtalS1czrRCYf2ATYLg"
@@ -35,10 +42,11 @@ router.get("/otp",function (req,res) {
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
-
+var reg_details={};
 router.post('/user-registration', function(req, res, next) {
   console.log("API called");
     if(req.body){
+
       //console.log(req.body);
      // console.log(req.body)
        var data=new Object(req.body);
@@ -46,14 +54,34 @@ router.post('/user-registration', function(req, res, next) {
         data=JSON.parse(data)
 
         console.log(data)
+        reg_details.data=data;
+        var otp = random(four);
 
-        var insert="insert into Users values(null,'"+data.f_name+"','"+data.l_name+"','"+data.email+"','"+data.mno+"','"+data.city+"','"+data.college+"','"+data.user_type+"','"+data.gender+"','"+data.password+"',null)";
+        reg_details.otp=otp;
+        var mob=data.mobile;
+        var msg = "OTP From TRIP POOL is "+otp+"";
+        var number=mob;
+
+        var senderid="TRPOOL";
+        var route='4';
+        var dialcode='91';
+        msg91.sendOne(authkey,number,msg,senderid,route,dialcode,function(response){
+
+            console.log(response);
+            res.json({"status": true});
+        });
+
+
+
+
+
+        /*var insert="insert into Users values(null,'"+data.f_name+"','"+data.l_name+"','"+data.email+"','"+data.mno+"','"+data.city+"','"+data.college+"','"+data.user_type+"','"+data.gender+"','"+data.password+"',null)";
         conn.query(insert, function(err, results) {
             if (err) throw err
             console.log(results)
             res.json({"status":true});
 
-        })
+        })*/
 
     }
     else{
