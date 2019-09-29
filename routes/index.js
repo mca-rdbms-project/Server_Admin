@@ -186,7 +186,7 @@ router.post("/find-trip",function (req,res) {
         data=JSON.stringify(data)
         data=JSON.parse(data)
         console.log("find-trip values :"+data);
-        var query="select t.trip_id,t.time,t.v_details,t.rules,u.first_name,u.mobile,t.origin,t.destination from Trips t,Users u where t.user=u.user_id";
+        var query="select t.trip_id,t.time,t.date,t.v_details,t.rules,u.first_name,u.mobile,t.origin,t.destination from Trips t,Users u where t.user=u.user_id";
         var obj={}
         var tripArr=[];
         conn.query(query,function (err,trips) {
@@ -205,6 +205,7 @@ router.post("/find-trip",function (req,res) {
                     trips.forEach(function (item) {
                         var oDist;
                         var dDist;
+                        console.log("item: "+item)
                         item.time=item.date+" "+item.time;
                         distance.get(
                             {
