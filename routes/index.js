@@ -414,7 +414,7 @@ router.post("/reject-request",function (req,res) {
 })
 
 
-async function findDistance(loc1,loc2){
+function findDistance(loc1,loc2){
     console.log(loc1)
     console.log(loc2)
     distance.get(
