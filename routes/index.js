@@ -269,7 +269,9 @@ router.post("/find-trip",function (req,res) {
 
                 }
                 else {
-                    res.json({"status": true, "Result": "Empty"});
+                    gtrips.data=[];
+                    gtrips.status=true;
+                    res.json(gtrips);
                 }
             }
         })
@@ -287,7 +289,8 @@ router.get("/list-view-rider",function (req,res) {
     setTimeout(() => {
         console.log(gtrips);
         res.json(gtrips);
-        gtrips={}
+        gtrips.data=[];
+        gtrips.status=true;
     }, 2000)
 
 
