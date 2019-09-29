@@ -203,7 +203,8 @@ router.post("/find-trip",function (req,res) {
                     var counter=trips.length;
                    // trips.forEach(function (item)
                     trips.forEach(function (item) {
-                        (async function () {
+                        getList();
+                        async function getList () {
 
 
                         var oDist=await findDistance(item.origin, data.f_location);
@@ -217,7 +218,7 @@ router.post("/find-trip",function (req,res) {
                         if(counter==0){
                             sendData(list);
                         }
-                        })
+                        }
 
                     })
                     function sendData(list){
