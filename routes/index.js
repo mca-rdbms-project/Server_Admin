@@ -450,9 +450,11 @@ router.post("/reject-request",function (req,res) {
         var data = new Object(req.body);
         data = JSON.stringify(data)
         data = JSON.parse(data)
+        console.log(data);
         var req_id=data.request_id;
         req_id=req_id.substring(12);
-        var query="update Requests set status='rejected' where req_id='"+req_id+"'";
+        console.log(req_id);
+        var query="update Requests set status='rejected' where req_id="+req_id+"";
         conn.query(query,function (err,result) {
             if(!err){
                 query="select u.mobile from Users u,Requests r where u.user_id=r.user_id"
