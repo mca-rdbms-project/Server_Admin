@@ -186,7 +186,7 @@ router.post("/find-trip",function (req,res) {
         data=JSON.stringify(data)
         data=JSON.parse(data)
         console.log("find-trip values :"+data);
-        var query="select t.trip_id,t.time,t.date,t.v_details,t.rules,u.first_name,u.mobile,t.origin,t.destination from Trips t,Users u where t.user=u.user_id";
+        var query="select t.trip_id,t.time,t.date,t.v_details,t.rules,u.first_name,u.mobile,t.origin,t.destination,t.amount from Trips t,Users u where t.user=u.user_id";
         var obj={}
         var tripArr=[];
         conn.query(query,function (err,trips) {
@@ -436,14 +436,14 @@ router.post("/accept-request",function (req,res) {
         var query="update Requests set status='accepted' where req_id='"+req_id+"'";
         conn.query(query,function (err,result) {
             if(!err){
-                query="select u.mobile,t.origin,t.destination,t.v_details,t.date,t.time from Users u,Requests r,Trips t where u.user_id=r.user_id && t.trip_id=r.trip_id"
+                query="select u.mobile,t.origin,t.destination,t.v_details,t.date,t.time,t.amount from Users u,Requests r,Trips t where u.user_id=r.user_id && t.trip_id=r.trip_id"
                 conn.query(query,function (err,result) {
                     if(!err){
 
                         var details=result[0];
                         console.log(details);
                         var mob=result[0].mobile;
-                        var msg = "Your request for the trip from "+details.origin+" to"+details.destination+" has accepted by driver.\nTime : "+details.date+" "+details.time+"\nVehicle :"+details.v_details+"\n\nThank you..";
+                        var msg = "Your request for the trip from "+details.origin+" to"+details.destination+" has accepted by driver.\nTime : "+details.date+" "+details.time+"\nVehicle :"+details.v_details+"\nAmount : "+details.amount+"\n\nThank you..";
                         var number=mob;
 
                         var senderid="TRPOOL";
