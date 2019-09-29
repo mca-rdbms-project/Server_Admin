@@ -19,8 +19,8 @@
       <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/routes/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="229" column="41" selection-start-line="229" selection-start-column="41" selection-end-line="229" selection-end-column="41" />
+            <state relative-caret-position="300">
+              <caret line="220" column="69" lean-forward="true" selection-start-line="220" selection-start-column="69" selection-end-line="220" selection-end-column="69" />
             </state>
           </provider>
         </entry>
@@ -326,12 +326,12 @@
       <workItem from="1569339950760" duration="8562000" />
       <workItem from="1569556606956" duration="4198000" />
       <workItem from="1569651734482" duration="11802000" />
-      <workItem from="1569733439593" duration="19056000" />
+      <workItem from="1569733439593" duration="19631000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="280371000" />
+    <option name="totallyTimeSpent" value="280946000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="25" width="1366" height="743" extended-state="6" />
@@ -345,7 +345,7 @@
       <window_info anchor="bottom" id="Run" order="2" weight="0.3180328" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" order="10" weight="0.3" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.3" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -692,8 +692,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="229" column="41" selection-start-line="229" selection-start-column="41" selection-end-line="229" selection-end-column="41" />
+        <state relative-caret-position="300">
+          <caret line="220" column="69" lean-forward="true" selection-start-line="220" selection-start-column="69" selection-end-line="220" selection-end-column="69" />
         </state>
       </provider>
     </entry>

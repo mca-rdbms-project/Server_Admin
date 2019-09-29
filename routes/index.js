@@ -218,7 +218,7 @@ router.post("/find-trip",function (req,res) {
                                 distance.get(
                                     {
                                         origin: item.destination,
-                                        destination:data.to_location
+                                        destination: data.to_location
                                     },
                                     function(err, data) {
                                         if (err) return console.log(err);
