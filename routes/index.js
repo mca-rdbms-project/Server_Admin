@@ -315,7 +315,7 @@ router.post("/request-trip",function (req,res) {
 
 
         //var query="select trip_id from Trips where user='"+data.user_id+"' && status='upcoming' ";
-        var check="select * from Requests where trip_id='"+trip_id+"' && user_id='"+user+"'";
+        var check="select * from Requests where trip_id='"+trip_id+"' && user_id='"+user+"' && status='pending'";
 
         conn.query(check,function (err,data) {
             if(!err) {
@@ -436,10 +436,35 @@ router.post("/accept-request",function (req,res) {
         var query="update Requests set status='accepted' where req_id='"+req_id+"'";
         conn.query(query,function (err,result) {
             if(!err){
-                res.json({"status":true});
+                query="select u.mobile,t.origin,t.destination,t.v_details,t.date,t,time from Users u,Requests r,Trips t where u.user_id=r.user_id && t.trip_id=r.trip_id"
+                conn.query(query,function (err,result) {
+                    if(!err){
+
+                        var details=result[0];
+                        console.log(details);
+                        var mob=result[0].mobile;
+                        var msg = "Your request for the trip from "+details.origin+" to"+details.destination+" has accepted by driver.\nTime : "+details.date+" "+details.time+"\nVehicle :"+details.v_details+"\n\nThank you..";
+                        var number=mob;
+
+                        var senderid="TRPOOL";
+                        var route='4';
+                        var dialcode='91';
+                        msg91.sendOne(authkey,number,msg,senderid,route,dialcode,function(response){
+
+                            console.log(response);
+                            res.json({"status": true});
+                        });
+                    }
+                    else {
+                        console.log(err)
+                        res.json({"status":true});
+                    }
+                })
+
             }
             else{
                 console.log(err);
+                res.json({"status":true});
             }
         })
 
