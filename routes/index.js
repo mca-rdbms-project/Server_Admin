@@ -210,7 +210,7 @@ router.post("/find-trip",function (req,res) {
                                 origin: item.origin,
                                 destination:data.f_location
                             },
-                            function(err, data) {
+                            function(err, result) {
                                 if (err) return console.log(err);
                                 console.log(data.distanceValue);
                                 oDist=data.distanceValue;
