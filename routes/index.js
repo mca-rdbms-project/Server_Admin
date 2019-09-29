@@ -326,7 +326,7 @@ router.post("/request-trip",function (req,res) {
 
                         if(!err){
 
-                                var query = "select u.mobile from Users u,Trips t where u.user_id=t.user";
+                                var query = "select u.mobile from Users u,Trips t where t.trip_id='"+trip_id+"' u.user_id=t.user";
                                 conn.query(query, function (err, result) {
                                     var mob = result[0];
                                     mob = mob.mobile;
