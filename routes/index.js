@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 const db=require('../config/db');
 const conn=db.db;
-var msg91 = require("msg91")("150002AZFP9V8Yh58fcf044", "TRPOOL", "4" );
+var msg91 = require("msg91")("150002AZFP9V8Yh58fcf044","TRPOOL", "4" );
 var distance = require('google-distance');
 distance.apiKey="AIzaSyBSjMmeNnPp00VQhtalS1czrRCYf2ATYLg"
 
@@ -19,6 +19,7 @@ router.post('/user-registration', function(req, res, next) {
        var data=new Object(req.body);
         data=JSON.stringify(data)
         data=JSON.parse(data)
+
         console.log(data)
 
         var insert="insert into Users values(null,'"+data.f_name+"','"+data.l_name+"','"+data.email+"','"+data.mno+"','"+data.city+"','"+data.college+"','"+data.user_type+"','"+data.gender+"','"+data.password+"',null)";
