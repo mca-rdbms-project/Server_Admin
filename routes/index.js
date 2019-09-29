@@ -257,7 +257,7 @@ router.post("/request-trip",function (req,res) {
             if(!err) {
                 console.log("fetch data:"+data);
                 if (data.length == 0) {
-                    var query = "insert into Requests values(null,'" + trip_id + "','" + user + "',null)";
+                    var query = "insert into Requests values(null,'" + trip_id + "','" + user + "',2,'pending')";
                     conn.query(query, function (err, id) {
 
                         if(!err){
@@ -328,7 +328,7 @@ router.post("/find-requests",function (req,res,next) {
 })
 router.get("/view-requests",function (req,res) {
 
-    var query="select u.first_name,u.mobile,u.college,r.req_id from Users u,Trips t,Requests r where t.user='"+driver+"' && r.trip_id=t.trip_id && u.user_id=r.user_id";
+    var query="select u.first_name,u.mobile,u.college,r.req_id,r.seats from Users u,Trips t,Requests r where t.user='"+driver+"' && r.trip_id=t.trip_id && u.user_id=r.user_id && r.status='pending'";
     conn.query(query,function (err,data) {
         if(!err){
             console.log(data);
@@ -365,12 +365,38 @@ router.get("/list-view-rider",function (req,res) {
 })
 
 router.post("/accept-request",function (req,res) {
-    console.log(req.body)
-    res.json({"status":true})
+    if(req.body) {
+        var data = new Object(req.body);
+        data = JSON.stringify(data)
+        data = JSON.parse(data)
+        var req_id=data.request_id;
+        req_id=req_id.substring(12);
+        var query="update requests set status='accepted' where req_id='"+req_id+"'";
+        conn.query(query,function (err,result) {
+            if(!err){
+                res.json({"status":true});
+            }
+        })
+
+
+
+    }
 })
 router.post("/reject-request",function (req,res) {
-    console.log(req.body)
-    res.json({"status":true})
+    if(req.body) {
+        var data = new Object(req.body);
+        data = JSON.stringify(data)
+        data = JSON.parse(data)
+        var req_id=data.request_id;
+        req_id=req_id.substring(12);
+        var query="update requests set status='rejected' where req_id='"+req_id+"'";
+        conn.query(query,function (err,result) {
+            if(!err){
+                res.json({"status":true});
+            }
+        })
+
+    }
 })
 
 
