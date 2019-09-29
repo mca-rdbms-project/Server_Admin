@@ -12,6 +12,7 @@
                     <tr>
                         <th>Req ID</th>
                         <th>Trip ID</th>
+                        <th>Status</th>
 
 
                     </tr>
@@ -21,7 +22,9 @@
                         {{#each Requests}}
                             <tr>
                                 <td>{{this.req_id}}</td>
-                                <td>{{this.trip_id}}
+                                <td>{{this.trip}}
+                                </td>
+                                <td>{{this.status}}
                                 </td>
                                 <td><a href="/admin/delete-requests/{{this.req_id}}">DELETE</a> </td>
                             </tr>
