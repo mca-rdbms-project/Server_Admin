@@ -753,7 +753,7 @@ router.post("/delete-passenger-request",function (req,res) {
             })
         }
 })
-router.post("/delete-passenger-request",function (req,res) {
+router.post("/delete-rider-trip",function (req,res) {
 
     if(req.body) {
         var data = new Object(req.body);
