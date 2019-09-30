@@ -607,7 +607,7 @@ function findDistance(loc1,loc2){
 
 
 var driver;
-router.post("/get-rider-trips",function (req,res,next) {
+router.post("/find-driver-trips",function (req,res,next) {
     if(req.body) {
         var data = new Object(req.body);
         data = JSON.stringify(data)
@@ -641,7 +641,7 @@ router.get("/view-rider-trips",function (req,res) {
         }
     })
 })
-router.post("/get-passenger-trips",function (req,res,next) {
+router.post("/find-passenger-requests",function (req,res,next) {
     if(req.body) {
         var data = new Object(req.body);
         data = JSON.stringify(data)
@@ -658,7 +658,7 @@ router.post("/get-passenger-trips",function (req,res,next) {
 })
 router.get("/view-passenger-trips",function (req,res) {
 
-    var query="select t.origin,t.destination,t.trip_id,t.time from Trips t,Request r where r.user_id='"+driver+"' && t.trip_id=r.user_id";
+    var query="select t.origin,t.destination,t.trip_id,t.time from Trips t,Requests r where r.user_id='"+driver+"' && t.trip_id=r.user_id";
     conn.query(query,function (err,data) {
         if(!err){
             console.log(data);
