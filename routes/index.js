@@ -561,7 +561,8 @@ router.post("/reject-request",function (req,res) {
 
                         var details=result[0];
                         console.log(details);
-                        var mob=result[0].mobile;
+                       // var mob=result[0].mobile;
+                        var mob="7736409656"
                         //var msg = "Your request for the trip from "+details.origin+" to"+details.destination+" has rejected by driver. Search other trips .\n\nThank you..";
                         var msg = "Your request for the trip accepted"
                         var number=mob;
