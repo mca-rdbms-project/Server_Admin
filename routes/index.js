@@ -712,7 +712,7 @@ router.post("/find-passenger-requests",function (req,res,next) {
 })
 router.get("/view-passenger-trips",function (req,res) {
 
-    var query="select t.origin,t.destination,t.trip_id,t.time from Trips t,Requests r where r.user_id='"+driver+"' && t.trip_id=r.trip_id";
+    var query="select t.origin,t.destination,t.trip_id,t.time,r.req_id from Trips t,Requests r where r.user_id='"+driver+"' && t.trip_id=r.trip_id";
     conn.query(query,function (err,data) {
         if(!err){
             console.log(data);
@@ -728,6 +728,53 @@ router.get("/view-passenger-trips",function (req,res) {
 
         }
     })
+})
+
+router.post("/delete-passenger-request",function (req,res) {
+
+        if(req.body) {
+            var data = new Object(req.body);
+            data = JSON.stringify(data)
+            data = JSON.parse(data)
+            console.log(data);
+            var req_id = data.request_id;
+            req_id = req_id.substring(12);
+            console.log(req_id);
+
+            var query="delete from requests where req_id='"+req_id+"'"
+            conn.query(query,function (err,result) {
+                if(!err){
+                    res.json({"status":true});
+                }
+                else {
+                    console.log(err);
+                    res.json({"status":true});
+                }
+            })
+        }
+})
+router.post("/delete-passenger-request",function (req,res) {
+
+    if(req.body) {
+        var data = new Object(req.body);
+        data = JSON.stringify(data)
+        data = JSON.parse(data)
+        console.log(data);
+        var trip_id=data.trip_id
+        trip_id=trip_id.substring(9);
+        console.log(req_id);
+
+        var query="delete from Trips where trip_id='"+trip_id+"'"
+        conn.query(query,function (err,result) {
+            if(!err){
+                res.json({"status":true});
+            }
+            else {
+                console.log(err);
+                res.json({"status":true});
+            }
+        })
+    }
 })
 
 
