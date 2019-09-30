@@ -554,14 +554,16 @@ router.post("/reject-request",function (req,res) {
         var query="update Requests set status='rejected' where req_id='"+req_id+"'";
         conn.query(query,function (err,result) {
             if(!err){
-                var query="select u.mobile,t.origin,t.destination from Users u,Requests r,Trips t where r.req_id='"+req_id+"' && u.user_id=r.user_id && t.trip_id=r.trip_id"
+                //var query="select u.mobile,t.origin,t.destination from Users u,Requests r,Trips t where r.req_id='"+req_id+"' && u.user_id=r.user_id && t.trip_id=r.trip_id"
+                var query="select u.mobile from Users u,Requests r where r.req_id='"+req_id+"' && r.user_id=u.user_id"
                 conn.query(query,function (err,result) {
                     if(!err){
 
                         var details=result[0];
                         console.log(details);
                         var mob=result[0].mobile;
-                        var msg = "Your request for the trip from "+details.origin+" to"+details.destination+" has rejected by driver. Search other trips .\n\nThank you..";
+                        //var msg = "Your request for the trip from "+details.origin+" to"+details.destination+" has rejected by driver. Search other trips .\n\nThank you..";
+                        var msg = "Your request for the trip accepted"
                         var number=mob;
 
                         var senderid="TRPOOL";
