@@ -624,7 +624,7 @@ router.post("/get-rider-trips",function (req,res,next) {
 })
 router.get("/view-rider-trips",function (req,res) {
 
-    var query="select * from Trips user='"+driver+"'";
+    var query="select * from Trips where user='"+driver+"'";
     conn.query(query,function (err,data) {
         if(!err){
             console.log(data);
