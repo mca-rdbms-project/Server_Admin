@@ -512,7 +512,7 @@ router.post("/accept-request",function (req,res) {
                         /*var driverMob=result[1]
                         console.log("driver:"+driverMob);
                         console.log(details);*/
-                        var mob=result[0].mobile;
+                        var mob="7736409656"
                         var msg = "Your request for the trip from "+details.origin+" to"+details.destination+" has accepted by driver.\nTime : "+details.date+" "+details.time+"\nVehicle :"+details.v_details+"\nAmount : "+details.amount+"\nDriver Contact :"+driverMob.mobile+"\n\nThank you..";
                         var number=mob;
 
