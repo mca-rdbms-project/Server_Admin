@@ -495,9 +495,11 @@ router.post("/accept-request",function (req,res) {
         var data = new Object(req.body);
         data = JSON.stringify(data)
         data = JSON.parse(data)
-        var req_id=data.request_id;
-        req_id=req_id.substring(12);
         console.log("Req_id="+req_id)
+        var req_id=data.request_id;
+        console.log("Req_id="+req_id)
+        req_id=req_id.substring(12);
+
         var query="update Requests set status='accepted' where req_id='"+req_id+"'";
         conn.query(query,function (err,result) {
             if(!err){
