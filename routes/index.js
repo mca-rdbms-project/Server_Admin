@@ -741,7 +741,7 @@ router.post("/delete-passenger-request",function (req,res) {
             req_id = req_id.substring(12);
             console.log(req_id);
 
-            var query="delete from requests where req_id='"+req_id+"'"
+            var query="delete from Requests where req_id='"+req_id+"'"
             conn.query(query,function (err,result) {
                 if(!err){
                     res.json({"status":true});
