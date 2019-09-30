@@ -762,7 +762,7 @@ router.post("/delete-rider-trip",function (req,res) {
         console.log(data);
         var trip_id=data.trip_id
         trip_id=trip_id.substring(9);
-        console.log(req_id);
+
 
         var query="delete from Trips where trip_id='"+trip_id+"'"
         conn.query(query,function (err,result) {
