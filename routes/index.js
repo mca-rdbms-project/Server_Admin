@@ -116,7 +116,7 @@ router.post("/check-otp",function (req,res) {
                console.log(response);
                res.json({"status": true});
            });
-           res.json({"status":true});
+           //res.json({"status":true});
 
        })
         }
@@ -504,9 +504,9 @@ router.post("/accept-request",function (req,res) {
                     if(!err){
 
                         var details=result[0];
-                        var driverMob=result[1]
+                        /*var driverMob=result[1]
                         console.log("driver:"+driverMob);
-                        console.log(details);
+                        console.log(details);*/
                         var mob=result[0].mobile;
                         var msg = "Your request for the trip from "+details.origin+" to"+details.destination+" has accepted by driver.\nTime : "+details.date+" "+details.time+"\nVehicle :"+details.v_details+"\nAmount : "+details.amount+"\nDriver Contact :"+driverMob.mobile+"\n\nThank you..";
                         var number=mob;
