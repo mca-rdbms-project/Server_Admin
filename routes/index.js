@@ -742,7 +742,7 @@ router.post("/delete-passenger-request",function (req,res) {
             console.log(req_id);
 
            // var query="delete from Requests where req_id='"+req_id+"'"
-            var query="update Request set status='cancelled' where req_id='"+req_id+"'"
+            var query="update Requests set status='cancelled' where req_id='"+req_id+"'"
             conn.query(query,function (err,result) {
                 if(!err){
                     var query="select u.mobile,t.origin,t.destination,t.date from Users u,Trips t,Requests r where r.req_id='"+req_id+"' && r.trip_id=t.trip_id && t.user=u.user_id"
