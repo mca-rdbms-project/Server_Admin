@@ -499,7 +499,7 @@ router.post("/accept-request",function (req,res) {
         var query="update Requests set status='accepted' where req_id='"+req_id+"'";
         conn.query(query,function (err,result) {
             if(!err){
-                query="select u.mobile,t.origin,t.destination,t.v_details,t.date,t.time,t.amount from Users u,Requests r,Trips t where u.user_id=r.user_id && t.trip_id=r.trip_id && t.user=u.user_id"
+                query="select u.mobile,t.origin,t.destination,t.v_details,t.date,t.time,t.amount from Users u,Requests r,Trips t where r.req_id='"+req_id+"' u.user_id=r.user_id && t.trip_id=r.trip_id && t.user=u.user_id"
                 conn.query(query,function (err,result) {
                     if(!err){
 
