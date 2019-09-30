@@ -593,8 +593,8 @@ router.post("/get-rider-trips",function (req,res) {
         data = JSON.stringify(data)
         data = JSON.parse(data)
         console.log(data);
-        var req_id=data.request_id;
-        req_id=req_id.substring(12);
+        var req_id=data.user_id;
+        //req_id=req_id.substring(12);
         console.log(req_id);
         var query="update Requests set status='rejected' where req_id='"+req_id+"'";
         conn.query(query,function (err,result) {
