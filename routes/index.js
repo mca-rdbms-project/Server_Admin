@@ -606,4 +606,41 @@ function findDistance(loc1,loc2){
 }
 
 
+var driver;
+router.post("/get-rider-trips",function (req,res,next) {
+    if(req.body) {
+        var data = new Object(req.body);
+        data = JSON.stringify(data)
+        data = JSON.parse(data)
+        console.log(data);
+        driver=data.user_id;
+        console.log(driver);
+        driver=driver.substring(2);
+        driver=driver.substring(0,driver.length-1);
+
+        res.json({"status":true})
+
+    }
+})
+router.get("/view-rider-trips",function (req,res) {
+
+    var query="select * from Trips user='"+driver+"'";
+    conn.query(query,function (err,data) {
+        if(!err){
+            console.log(data);
+            var obj={};
+            obj.data=data;
+            obj.status=true;
+            console.log(obj);
+            res.json(obj);
+        }
+        else{
+            console.log(err);
+            res.json({status:false});
+
+        }
+    })
+})
+
+
 module.exports = router;
