@@ -504,6 +504,7 @@ router.post("/accept-request",function (req,res) {
                     if(!err){
 
                         var details=result[0];
+                        console.log(result)
                         /*var driverMob=result[1]
                         console.log("driver:"+driverMob);
                         console.log(details);*/
