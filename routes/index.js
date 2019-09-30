@@ -456,23 +456,24 @@ router.post("/find-requests",function (req,res,next) {
     }
 })
 router.get("/view-requests",function (req,res) {
+    setTimeout(() => {
+        var query = "select u.first_name,u.mobile,u.college,r.req_id,r.seats from Users u,Trips t,Requests r where t.user='" + driver + "' && r.trip_id=t.trip_id && u.user_id=r.user_id && r.status='pending'";
+        conn.query(query, function (err, data) {
+            if (!err) {
+                console.log(data);
+                var obj = {};
+                obj.data = data;
+                obj.status = true;
+                console.log(obj);
+                res.json(obj);
+            }
+            else {
+                console.log(err);
+                res.json({status: false});
 
-    var query="select u.first_name,u.mobile,u.college,r.req_id,r.seats from Users u,Trips t,Requests r where t.user='"+driver+"' && r.trip_id=t.trip_id && u.user_id=r.user_id && r.status='pending'";
-    conn.query(query,function (err,data) {
-        if(!err){
-            console.log(data);
-            var obj={};
-            obj.data=data;
-            obj.status=true;
-            console.log(obj);
-            res.json(obj);
-        }
-        else{
-            console.log(err);
-            res.json({status:false});
-
-        }
-    })
+            }
+        })
+    },2000)
 })
 router.post("/ride-request",function (req,res) {
     if(req.body) {
@@ -550,7 +551,7 @@ router.post("/reject-request",function (req,res) {
         var query="update Requests set status='rejected' where req_id='"+req_id+"'";
         conn.query(query,function (err,result) {
             if(!err){
-                query="select u.mobile,t.origin,t.destination from Users u,Requests r,Trips t where u.user_id=r.user_id && t.trip_id=r.trip_id"
+                query="select u.mobile,t.origin,t.destination from Users u,Requests r,Trips t where r.req_id='"+req_id+"' && u.user_id=r.user_id && t.trip_id=r.trip_id"
                 conn.query(query,function (err,result) {
                     if(!err){
 
