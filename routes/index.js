@@ -503,7 +503,7 @@ router.post("/accept-request",function (req,res) {
         var query="update Requests set status='accepted' where req_id='"+req_id+"'";
         conn.query(query,function (err,result) {
             if(!err){
-                query="select u.mobile,t.origin,t.destination,t.v_details,t.date,t.time,t.amount from Users u,Requests r,Trips t where r.req_id='"+req_id+"' && u.user_id=r.user_id && t.trip_id=r.trip_id && t.user=u.user_id"
+                var query="select u.mobile,t.origin,t.destination,t.v_details,t.date,t.time,t.amount from Users u,Requests r,Trips t where r.req_id='"+req_id+"' && u.user_id=r.user_id && t.trip_id=r.trip_id && t.user=u.user_id"
                 conn.query(query,function (err,result) {
                     if(!err){
 
@@ -512,7 +512,7 @@ router.post("/accept-request",function (req,res) {
                         /*var driverMob=result[1]
                         console.log("driver:"+driverMob);
                         console.log(details);*/
-                        var mob="7736409656"
+                        var mob=details.mobile;
                         var msg = "Your request for the trip from "+details.origin+" to"+details.destination+" has accepted by driver.\nTime : "+details.date+" "+details.time+"\nVehicle :"+details.v_details+"\nAmount : "+details.amount+"\nDriver Contact :"+driverMob.mobile+"\n\nThank you..";
                         var number=mob;
 
@@ -554,7 +554,7 @@ router.post("/reject-request",function (req,res) {
         var query="update Requests set status='rejected' where req_id='"+req_id+"'";
         conn.query(query,function (err,result) {
             if(!err){
-                query="select u.mobile,t.origin,t.destination from Users u,Requests r,Trips t where r.req_id='"+req_id+"' && u.user_id=r.user_id && t.trip_id=r.trip_id"
+                var query="select u.mobile,t.origin,t.destination from Users u,Requests r,Trips t where r.req_id='"+req_id+"' && u.user_id=r.user_id && t.trip_id=r.trip_id"
                 conn.query(query,function (err,result) {
                     if(!err){
 
