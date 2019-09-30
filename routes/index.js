@@ -744,6 +744,23 @@ router.post("/delete-passenger-request",function (req,res) {
             var query="delete from Requests where req_id='"+req_id+"'"
             conn.query(query,function (err,result) {
                 if(!err){
+                    var query="select u.mobile,t.origin,t.destination,t.date from Users u,Trips t,Requests r where r.req_id='"+req_id+"' && r.trip_id=t.trip_id && t.user=u.user_id"
+                    conn.query(query,function (err,result) {
+                        var details=result[0];
+                        var mob=result[0].mobile;
+                        var msg = "The request for the trip from "+details.origin+" to"+details.destination+" has cancelled by passenger.\n\nThank you..";
+                        var number=mob;
+
+                        var senderid="TRPOOL";
+                        var route='4';
+                        var dialcode='91';
+                        msg91.sendOne(authkey,number,msg,senderid,route,dialcode,function(response){
+
+                            console.log(response);
+                            res.json({"status": true});
+                        });
+
+                    })
                     res.json({"status":true});
                 }
                 else {
