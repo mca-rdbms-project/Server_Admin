@@ -703,7 +703,7 @@ router.post("/find-passenger-requests",function (req,res,next) {
 })
 router.get("/view-passenger-trips",function (req,res) {
 
-    var query="select t.origin,t.destination,t.trip_id,t.time from Trips t,Requests r where r.user_id='"+driver+"' && t.trip_id=r.user_id";
+    var query="select t.origin,t.destination,t.trip_id,t.time from Trips t,Requests r where r.user_id='"+driver+"' && t.trip_id=r.trip_id";
     conn.query(query,function (err,data) {
         if(!err){
             console.log(data);
