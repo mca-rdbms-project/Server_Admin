@@ -512,8 +512,9 @@ router.post("/accept-request",function (req,res) {
                         /*var driverMob=result[1]
                         console.log("driver:"+driverMob);
                         console.log(details);*/
-                        var mob=details.mobile;
-                        var msg = "Your request for the trip from "+details.origin+" to"+details.destination+" has accepted by driver.\nTime : "+details.date+" "+details.time+"\nVehicle :"+details.v_details+"\nAmount : "+details.amount+"\nDriver Contact :"+driverMob.mobile+"\n\nThank you..";
+                        var mob="7736409656";
+                       // var msg = "Your request for the trip from "+details.origin+" to"+details.destination+" has accepted by driver.\nTime : "+details.date+" "+details.time+"\nVehicle :"+details.v_details+"\nAmount : "+details.amount+"\nDriver Contact :"+driverMob.mobile+"\n\nThank you..";
+                       var msg="Your request for the trip accepted"
                         var number=mob;
 
                         var senderid="TRPOOL";
@@ -564,7 +565,7 @@ router.post("/reject-request",function (req,res) {
                        // var mob=result[0].mobile;
                         var mob="7736409656"
                         //var msg = "Your request for the trip from "+details.origin+" to"+details.destination+" has rejected by driver. Search other trips .\n\nThank you..";
-                        var msg = "Your request for the trip accepted"
+                        var msg = "Your request for the trip rejected"
                         var number=mob;
 
                         var senderid="TRPOOL";
