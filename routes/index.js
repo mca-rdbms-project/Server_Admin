@@ -587,7 +587,52 @@ router.get("/contact",function (req,res) {
     res.render("contact",{layout:false})
 })
 
+router.post("/get-rider-trips",function (req,res) {
+    if(req.body) {
+        var data = new Object(req.body);
+        data = JSON.stringify(data)
+        data = JSON.parse(data)
+        console.log(data);
+        var req_id=data.request_id;
+        req_id=req_id.substring(12);
+        console.log(req_id);
+        var query="update Requests set status='rejected' where req_id='"+req_id+"'";
+        conn.query(query,function (err,result) {
+            if(!err){
+                query="select u.mobile,t.origin,t.destination from Users u,Requests r,Trips t where u.user_id=r.user_id && t.trip_id=r.trip_id"
+                conn.query(query,function (err,result) {
+                    if(!err){
 
+                        var details=result[0];
+                        console.log(details);
+                        var mob=result[0].mobile;
+                        var msg = "Your request for the trip from "+details.origin+" to"+details.destination+" has rejected by driver. Search other trips .\n\nThank you..";
+                        var number=mob;
+
+                        var senderid="TRPOOL";
+                        var route='4';
+                        var dialcode='91';
+                        msg91.sendOne(authkey,number,msg,senderid,route,dialcode,function(response){
+
+                            console.log(response);
+                            res.json({"status": true});
+                        });
+                    }
+                    else {
+                        console.log(err)
+                        res.json({"status":true});
+                    }
+                })
+
+            }
+            else{
+                console.log(err)
+                res.json({"status":true});
+            }
+        })
+
+    }
+})
 function findDistance(loc1,loc2){
     console.log(loc1)
     console.log(loc2)
