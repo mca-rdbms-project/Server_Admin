@@ -762,7 +762,7 @@ router.post("/delete-passenger-request",function (req,res) {
                         });
 
                     })
-                    res.json({"status":true});
+
                 }
                 else {
                     console.log(err);
